@@ -17,6 +17,4 @@ console.log('Listening on port: ' + port);
 //Should load login page by default
 
 //Routing
-//app.use(express.static('public'));
-
 app.use(express.static('public'));
