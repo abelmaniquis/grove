@@ -18,8 +18,6 @@ Features will include:
           -In fact, there are two passwords for you to join, your personal password, and a group password.
           -Your group is exclusive, you can only be part of one group at a time
    Chat:
-          -Your chatlogs delete themselves after a set period of time of your determination, for secrecy of course.
-          
           
 VERSION 1:
 
