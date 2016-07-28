@@ -21,5 +21,6 @@ var routeApp = require('./routes.js')(app,express,path,io);
 //Should connect on chat
 
 routeApp;
+
 app.listen(port);
 console.log('Listening on port: ' + port);
