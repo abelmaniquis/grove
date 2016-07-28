@@ -22,15 +22,19 @@ app.get("/signup",function(req,res){
 /*-------------------------------------
 CHATROOM
 
-Only accessible to users
+Only accessible to registered users
 -------------------------------------*/
 
 app.get("/chat",function(req,res){
   //load chatpage
   //should only be accesible by password
-  console.log("This should only be accessible by password")
-  console.log("This should connect to the chatroom");
+  console.log("Connected through routes.js");
   res.sendFile(path.join(__dirname + '/public/chat.html'));
+  
+  io.on('connection',function(socket){
+    console.log("Chat client connected");
+  })
+  
 });
 
 };
