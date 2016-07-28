@@ -1,14 +1,13 @@
 //config.passport.js
-var LocalStrategy = require('passport-local').Strategy;
+var Strategy = require('passport').Strategy;
 var User = require('../models/user');
 
 console.log("USERS :")
 console.log(User);
 console.log("");
 console.log("");
-console.log("LOCAL STRATEGY");
-console.log(LocalStrategy);
-
+console.log("STRATEGY");
+console.log(Strategy);
 module.exports = function(passport){
   
 }

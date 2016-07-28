@@ -17,10 +17,9 @@ require('./config/passport');
 
 //Routing
 var routeApp = require('./routes.js')(app,express,path,io);
-//Socket.io chatroom
-//Should connect on chat
-
 routeApp;
+
+//Should load socket.io chatroom
 
 app.listen(port);
 console.log('Listening on port: ' + port);

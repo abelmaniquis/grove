@@ -21,6 +21,8 @@ app.get("/signup",function(req,res){
 
 /*-------------------------------------
 CHATROOM
+
+Only accessible to users
 -------------------------------------*/
 
 app.get("/chat",function(req,res){
