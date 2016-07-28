@@ -1,5 +1,5 @@
 
-module.exports =function(app,express,path,io){
+module.exports =function(app,express,path,io,server,port){
   app.use(express.static('public'));
 //https://scotch.io/tutorials/use-expressjs-to-deliver-html-files
 
@@ -24,17 +24,9 @@ CHATROOM
 
 Only accessible to registered users
 -------------------------------------*/
-
+var chatRoom = require('./chatroom.js')(io,server,express,app);
 app.get("/chat",function(req,res){
-  //load chatpage
-  //should only be accesible by password
-  console.log("Connected through routes.js");
   res.sendFile(path.join(__dirname + '/public/chat.html'));
-  
-  io.on('connection',function(socket){
-    console.log("Chat client connected");
-  })
-  
-});
-
+  chatRoom;
+})
 };

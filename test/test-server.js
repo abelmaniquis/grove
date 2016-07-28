@@ -16,6 +16,6 @@ describe('grove',function(){
         res.should.be.html;
       })
   });
-  if("should access chat");
+  it("should access chat");
   it("should get login info");
 });
