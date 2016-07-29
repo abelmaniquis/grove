@@ -21,5 +21,7 @@ require('./config/passport')(app);
 var routeApp = require('./routes.js')(app,express,path,io,server);
 routeApp;
 
+
+
 app.listen(port);
 console.log('Listening on port: ' + port);
