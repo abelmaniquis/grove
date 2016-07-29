@@ -6,27 +6,27 @@ module.exports =function(app,express,path,io,server,port){
 /*-------------------
 LOGIN PAGE
 --------------------*/
-app.get("/",function(req,res){
-  //load login page by default
-  res.sendFile(path.join(__dirname + '/public/login.html'));
-})
+  app.get("/",function(req,res){
+    //load login page by default
+    res.sendFile(path.join(__dirname + '/public/login.html'));
+  })
 
 /*--------------
 SIGNUP PAGE
 ------------*/
 
-app.get("/signup",function(req,res){
-  res.sendFile(path.join(__dirname + '/public/signup.html'));
-});
+  app.get("/signup",function(req,res){
+    res.sendFile(path.join(__dirname + '/public/signup.html'));
+  });
 
 /*-------------------------------------
 CHATROOM
 
 Only accessible to registered users
 -------------------------------------*/
-var chatRoom = require('./chatroom.js')(io,server,express,app);
-app.get("/chat",function(req,res){
-  res.sendFile(path.join(__dirname + '/public/chat.html'));
-  chatRoom;
-})
+  var chatRoom = require('./chatroom.js')(io,server,express,app);
+  app.get("/chat",function(req,res){
+    res.sendFile(path.join(__dirname + '/public/chat.html'));
+    chatRoom;
+  })
 };
