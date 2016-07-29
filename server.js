@@ -18,7 +18,7 @@ require('./config/passport')(app);
 //express validation
 
 //Routing
-var routeApp = require('./routes.js')(app,express,path,io,server);
+var routeApp = require('./config/routes.js')(app,express,path,io,server);
 routeApp;
 
 

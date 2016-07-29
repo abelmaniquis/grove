@@ -8,7 +8,9 @@ LOGIN PAGE
 --------------------*/
   app.get("/",function(req,res){
     //load login page by default
-    res.sendFile(path.join(__dirname + '/public/login.html'));
+    res.sendFile(path.join(__dirname + '/../public/login.html'));
+    console.log("DIRNAAAAAAAAAAAAAAAAAAAME!!!!!");
+    console.log(__dirname);
   })
 
 /*--------------
@@ -16,7 +18,7 @@ SIGNUP PAGE
 ------------*/
 
   app.get("/signup",function(req,res){
-    res.sendFile(path.join(__dirname + '/public/signup.html'));
+    res.sendFile(path.join(__dirname + '/../public/signup.html'));
   });
 
 /*-------------------------------------
@@ -24,9 +26,11 @@ CHATROOM
 
 Only accessible to registered users
 -------------------------------------*/
-  var chatRoom = require('./chatroom.js')(io,server,express,app);
+  var chatRoom = require('../chatroom.js')(io,server,express,app);
   app.get("/chat",function(req,res){
-    res.sendFile(path.join(__dirname + '/public/chat.html'));
+    res.sendFile(path.join(__dirname + '/../public/chat.html'));
     chatRoom;
   })
 };
+
+//Look up chrome ARC

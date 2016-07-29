@@ -4,7 +4,7 @@ var passport = require('passport'),
   Strategy = require('passport').Strategy,
   bcrypt = require('bcrypt'),
   bodyParser = require('body-parser'),
-  User = require('../models/user');
+  User = require('../api/user/user');
 /*
 console.log("USERS :")
 console.log(User);
