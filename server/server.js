@@ -13,7 +13,7 @@ var session = require('express-session');
 
 //Database configuration
 mongoose.connect(configDB.url);
-
+console.log("DATABASE CONNECTED: " + configDB.url);
 require('./config/passport')(passport); //passing passport for configuration
 
 //set up express application
@@ -28,7 +28,7 @@ var routeApp = require('./config/routes.js')(app,express,path,io,server);
 routeApp;
 
 //Load chatroom
-var chatroom = require('./config/chatroom.js')(io);
+var chatroom = require('./config/chatroom.js')(io,app,express);
 chatroom;
 
 app.listen(port);

@@ -50,7 +50,7 @@ module.exports = function(passport){
     });
   }
   ))
-  
+console.log("END OF PASSPORT FUNCTION");  
 }
 
 /*

@@ -7,8 +7,8 @@ LOGIN PAGE
 --------------------*/
   app.get("/",function(req,res){
     //load login page by default
+    console.log("Here is the login page");
     res.sendFile(path.join(__dirname + '/../../client/public/login.html'));
-    console.log(__dirname);
   });
 
 /*------------------------------
@@ -16,6 +16,7 @@ SIGNUP PAGE
 -------------------------------*/
 
   app.get("/signup",function(req,res){
+    console.log("Here is router/signup");
     res.sendFile(path.join(__dirname + '/../../client/public/signup.html'));
   });
 
@@ -25,7 +26,7 @@ CHATROOM
 Only accessible to registered users
 -------------------------------------*/
   app.get("/chat",function(req,res){
-    console.log("Here is the router/chat")
+    console.log("Here is router/chat")
     res.sendFile(path.join(__dirname + '/../../client/public/chat.html'));
   })
 };
