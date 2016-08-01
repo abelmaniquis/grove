@@ -1,16 +1,16 @@
-var io = 
 $(document).ready(function(){
-console.log("reading chatroom");
     var socket = io();
     var input = $('input');
     var messages = $('#messages');
 
     var addMessage = function(message) {
-        messages.append('<li>' + message + '</li>');
+        messages.append('<div>' + message + '</div>');
     };
 
     input.on('keydown', function(event) {
+        console.log("Keydown");
         if (event.keyCode != 13) {
+            console.log("enter key pressed");
             return;
         }
 
