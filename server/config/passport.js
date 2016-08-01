@@ -4,21 +4,10 @@ var passport = require('passport'),
   Strategy = require('passport').Strategy,
   bcrypt = require('bcrypt'),
   bodyParser = require('body-parser'),
-  User = require('../api/user/user');
-/*
-console.log("USERS :")
-console.log(User);
-console.log("");
-console.log("");
-console.log("STRATEGY");
-console.log(Strategy);
-console.log("");
-console.log("");
-console.log("HERE's BCRYPT");
-console.log(bcrypt);
-*/
+  User = require('../api/user/user.model.js');
+
 module.exports = function(passport){
-  /*
+  
   passport.serializeUser(function(user,done){
     done(null,user.id);
   });
@@ -27,7 +16,20 @@ module.exports = function(passport){
     User.findById(id,function(err,user){
       done(err, user);
     });
-  });*/
+  });
+  /*------------------------
+  LOCAL SIGNUP
+  --------------------------*/
+  passport.use('local-signup',new Strategy({
+    usernameField : 'name',
+    passwordField : 'password',
+    passReqToCallback : true
+  },
+  function(req,email,password, done){
+    
+  }
+  ))
+  
 }
 
 /*

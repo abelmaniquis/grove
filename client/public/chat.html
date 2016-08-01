@@ -1,22 +1,13 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Chatroom</title>
-  <link rel="stylesheet" href="stylesheets/chat.css">
-</head>
-<body>
-  <h1 class="title">Chatroom</h1>
-  <li class="chatPage">
-    <div class="chatArea">
-      <input class="inputMessage" placeholder="Type here:">
-      <ul class="messages">
-      </ul>
-    </div>
-  </li>
+<title>Chatroom</title>
+<meta charset="utf-8">
 
+<h1>Chatroom</h1>
+
+<!-- JS -->
 <script src="//code.jquery.com/jquery-2.1.0.js"></script>
-<script src="main.js"></script> 
+<script src="./main.js"></script> 
+
+<input type="text">
 <script src="/socket.io/socket.io.js"></script>
-</body>
-</html>
+<div id="messages"></div>

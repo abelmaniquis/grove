@@ -1,3 +1,5 @@
+//app/server/api/user/user.model.js
+
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
@@ -19,4 +21,4 @@ userSchema.methods.validPassword = function(password){
 };
 
 
-module.exports = User;
+module.exports = mongoose.model('User',userSchema);

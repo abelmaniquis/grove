@@ -22,3 +22,19 @@ Features will include:
 VERSION 1:
 
 For now, the app will simply be a chatroom that requires password access
+
+--------------------------------
+ADDITIONAL LIBRARIES
+--------------------------------
+morgan:
+Morgan is an HTTP request logger middleware for Node.js. 
+It simplifies the process of logging requests to your application.
+It standardizes and automatically creates request request logs.
+
+flash:
+
+cookieParser:
+
+express-session
+
+configDB
