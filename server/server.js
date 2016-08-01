@@ -28,9 +28,8 @@ var routeApp = require('./config/routes.js')(app,express,path,io,server);
 routeApp;
 
 //Load chatroom
-var chatroom = require('./config/chatroom.js');
+var chatroom = require('./config/chatroom.js')(io);
 chatroom;
-
 
 app.listen(port);
 console.log('Listening on port: ' + port);

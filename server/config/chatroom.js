@@ -1,18 +1,8 @@
-/*
-module.exports = function(io,server,express,app){
-  console.log("Here's io");
-  console.log(io);
+
+module.exports = function(io){
+  console.log("HERE'S THE CHATROOM");
+  //console.log(io);
   io.on('connection',function(socket){
-    console.log("Client Connected");
+    console.log("CHAT IS CONNECTED");
   });
-}*/
-
-var express = require('express');
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
-var port = process.env.PORT||8080;
-
-module.exports = function(){
-  console.log("HERE'S THE CHATROOM!");
-};
+}

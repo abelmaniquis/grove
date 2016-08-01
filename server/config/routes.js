@@ -25,6 +25,7 @@ CHATROOM
 Only accessible to registered users
 -------------------------------------*/
   app.get("/chat",function(req,res){
+    console.log("Here is the router/chat")
     res.sendFile(path.join(__dirname + '/../../client/public/chat.html'));
   })
 };

@@ -30,8 +30,24 @@ module.exports = function(passport){
     passwordField: 'password',
     passReqToCallback: true
   },
-  function(req, email, password, done){
-    
+  function(req, name, password, done){
+    process.nextTick(function(){
+      User.findOne({'local.name': name},function(err,user){
+        if(err)
+          return done(err);
+        if(user){
+          return done(null,false,req.flash('signupMessage','That name is already taken'))
+        }else{
+          //If there is no user with that name, create the user
+          var newUser = new User();
+          
+          newUser.local.name = name;
+          newUser.local.password = newUser.generateHash(password);
+        
+          //set the user's local credentials
+        }
+      })
+    });
   }
   ))
   
