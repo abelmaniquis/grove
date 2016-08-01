@@ -27,5 +27,10 @@ app.use(passport.session());
 var routeApp = require('./config/routes.js')(app,express,path,io,server);
 routeApp;
 
+//Load chatroom
+var chatroom = require('./config/chatroom.js');
+chatroom;
+
+
 app.listen(port);
 console.log('Listening on port: ' + port);
