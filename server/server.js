@@ -9,7 +9,7 @@ var configDB = require('./config/database.js');
 var server = require('http').createServer(app);
 
 var socket_io = require('socket.io');
-var io= socket_io(server);
+var io = socket_io(server);
 
 var path = require('path');
 var session = require('express-session');
@@ -28,13 +28,15 @@ app.use(passport.session());
 
 //Routing
 var routeApp = require('./config/routes.js')(app,express,path,io,server);
+
 routeApp;
 
 //Load chatroom
 console.log("routeApp");
 
-var chatroom = require('./config/chatroom.js')(io,app,express);
+var chatroom = require('./config/chatroom.js')(io,app,express,server);
 chatroom;
+console.log(chatroom);
 
 app.listen(port);
 console.log('Listening on port: ' + port);
