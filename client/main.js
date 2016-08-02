@@ -8,9 +8,7 @@ $(document).ready(function(){
     };
 
     input.on('keydown', function(event) {
-        console.log("Keydown");
         if (event.keyCode != 13) {
-            console.log("enter key pressed");
             return;
         }
 
