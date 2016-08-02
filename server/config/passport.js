@@ -41,18 +41,42 @@ module.exports = function(passport){
           //If there is no user with that name, create the user
           var newUser = new User();
           
+          //Set the user's local credentials
           newUser.local.name = name;
           newUser.local.password = newUser.generateHash(password);
         
-          //set the user's local credentials
+          //Save the user
+          newUser.save(function(err){
+            if (err)
+              throw err;
+            return done(null, newUser);
+          });
         }
-      })
     });
-  }
-  ))
+    });
+  }));
+  /*--------------------------
+  LOCAL LOGIN:
+  ---------------------------*/
+  passport.use('local-login',new Strategy({
+    usernameField: 'name',
+    passwordField: 'password'
+  },
+  function(req, email, password, done){
+    //If there are any errors, return the error before anything else
+    User.findOne({'local.email':email},function(err,user){
+      if(err)
+        return done(err);
+      if(!user)
+        return done(null, false,req.send({"no user":"found"}));
+      if(!user.validPassword(password))
+        return done(null, false, console.log('hello'));
+      return done(null,user);
+    });
+    
+  }));
 console.log("END OF PASSPORT FUNCTION");  
-}
-
-/*
+};
+/*  
 ask about connect-flash middleware.
 */

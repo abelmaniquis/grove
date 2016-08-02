@@ -27,13 +27,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Routing
-var routeApp = require('./config/routes.js')(app,express,path,io,server,configDB);
-
+var routeApp = require('./config/routes.js')(passport,app,express,path,io,server,configDB);
 routeApp;
 
 //Load chatroom
 console.log("routeApp");
-
 var chatroom = require('./config/chatroom.js')(io,app,express,server);
 chatroom;
 console.log(chatroom);
