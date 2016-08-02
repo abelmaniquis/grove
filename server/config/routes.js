@@ -1,4 +1,4 @@
-module.exports =function(app,express,path,io,server,port){
+module.exports =function(app,express,path,io,server,port,configDB){
   app.use(express.static('public'));
 //https://scotch.io/tutorials/use-expressjs-to-deliver-html-files
 /*-------------------
@@ -31,6 +31,15 @@ Only accessible to registered users
     console.log("================SOCKET STUFF=============================================================");
     console.log(io);
   });
+/*
+DATABASE.JSON
+*/
+app.get("/database",function(req,res){
+    res.json(
+      configDB
+      )
+});
+
 };
 
 //Look up chrome ARC

@@ -16,7 +16,7 @@ var session = require('express-session');
 
 //Database configuration
 mongoose.connect(configDB.url);
-console.log("DATABASE CONNECTED: " + configDB.url);
+console.log("DATABASE CONNECTED: " + configDB);
 require('./config/passport')(passport); //passing passport for configuration
 
 //set up express application
@@ -27,7 +27,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Routing
-var routeApp = require('./config/routes.js')(app,express,path,io,server);
+var routeApp = require('./config/routes.js')(app,express,path,io,server,configDB);
 
 routeApp;
 
