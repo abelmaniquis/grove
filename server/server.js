@@ -14,7 +14,9 @@ var session = require('express-session'); //sessions help keep track of users as
 
 //Database configuration
 mongoose.connect(configDB.url);
-require('./config/passport')(passport); //passing passport for configuration
+
+//Passing passport for configuration
+require('./config/passport')(passport); 
 
 //set up express application
 

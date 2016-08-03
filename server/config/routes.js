@@ -11,9 +11,17 @@ LOGIN PAGE
 --------------------*/
   app.get("/",function(req,res){
     //load login page by default
-    console.log("HERE IS THE LOGIN PAGE");
-    res.sendFile(path.join(route +'/login.html')); //set ../../../client/
+    console.log("HERE IS THE HOME PAGE");
+    res.sendFile(path.join(route +'/index.html')); //set ../../../client/
   });
+
+/*--------------------
+LOGIN PAGE
+---------------------*/
+  app.get("/login",function(req,res){
+    res.sendFile(path.join(route + '/login.html'));
+  })
+
 
 /*------------------------------
 SIGNUP PAGE
@@ -21,14 +29,14 @@ SIGNUP PAGE
 
   app.get("/signup",function(req,res){
     console.log("HERE IS THE SIGNUP PAGE");
-    res.sendFile(path.join(__dirname + '../../../client/signup.html'));
+    res.sendFile(path.join(route + '/signup.html'));
   });
   
 /*
 Process the signup form
 */
-  app.post('/signup',passport.authenticate('local-login',{
-    successRedirect : '/chat', //redirect to chat page
+  app.post('/signup',passport.authenticate('local-signup',{
+    successRedirect : '/profile', //redirect to chat page
     failureRedirect: '/signup', //redirect back to signup page
     failureFlash: 'Invalid username or password.' //display message upon failure to login, may require flash library
   }));
@@ -45,7 +53,7 @@ use route middlware to verify this (isLoggedIn function)
 -------------------------------------*/
   app.get("/profile",isLoggedIn,function(req,res){
     console.log("HERE IS THE PROFILE PAGE")
-    res.sendFile(path.join(__dirname + '../../../client/profile.html'));
+    res.sendFile(path.join(route + '/client/profile.html'));
   });
   
   app.get('information',isLoggedIn,function(req,res){
