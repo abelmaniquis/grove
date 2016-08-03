@@ -1,5 +1,6 @@
+//app/routes.js
 module.exports =function(passport,app,express,path,io,server,port,configDB){
-  app.use(express.static('public'));
+  //app.use(express.static('public'));
 //https://scotch.io/tutorials/use-expressjs-to-deliver-html-files
 /*-------------------
 LOGIN PAGE
@@ -24,7 +25,9 @@ Process the signup form
 */
   app.post('/signup',passport.authenticate('local-login',{
     successRedirect : '/chat', //redirect to chat page
-    failureRedirect: '/signup' //redirect back to signup page
+    failureRedirect: '/signup', //redirect back to signup page
+    failureFlash: 'Invalid username or password.'
+    
   }));
   
   app.post('/login', passport.authenticate('local-login',{
@@ -46,8 +49,14 @@ Only accessible to registered users
   });
   
     console.log("================SOCKET STUFF=============================================================");
-    console.log(io);
   });
+  
+  app.get('/logout',function(req,res){
+    req.logout();
+    res.redirect('/');
+    console.log("Log out");
+  });
+  
 /*
 DATABASE.JSON
 */
