@@ -1,14 +1,18 @@
 //app/routes.js
-module.exports =function(passport,app,express,path,io,server,port,configDB){
-  //app.use(express.static('public'));
+var passport = require('passport');
+var path = require('path');
+module.exports =function(app){ //don't need to pass everything
+//app.use(express.static('public'));
 //https://scotch.io/tutorials/use-expressjs-to-deliver-html-files
+
+var route = __dirname + '../../../client';
 /*-------------------
 LOGIN PAGE
 --------------------*/
   app.get("/",function(req,res){
     //load login page by default
     console.log("HERE IS THE LOGIN PAGE");
-    res.sendFile(path.join(__dirname + '../../../client/login.html'));
+    res.sendFile(path.join(route +'/login.html')); //set ../../../client/
   });
 
 /*------------------------------
@@ -39,7 +43,7 @@ PROFILE
 Only accessible to registered users
 use route middlware to verify this (isLoggedIn function)
 -------------------------------------*/
-  app.get("/profile",function(req,res){
+  app.get("/profile",isLoggedIn,function(req,res){
     console.log("HERE IS THE PROFILE PAGE")
     res.sendFile(path.join(__dirname + '../../../client/profile.html'));
   });
@@ -64,6 +68,9 @@ DATABASE.JSON
 function isLoggedIn(req,res,next){
   if(req.isAuthenticated())
     return next();
+  else{
+    console.log("ACCESS DENIED");
+  }
   
   res.redirect('/');
 }

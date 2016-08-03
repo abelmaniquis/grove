@@ -14,7 +14,6 @@ var session = require('express-session'); //sessions help keep track of users as
 
 //Database configuration
 mongoose.connect(configDB.url);
-console.log("DATABASE CONNECTED: " + configDB);
 require('./config/passport')(passport); //passing passport for configuration
 
 //set up express application
@@ -27,11 +26,10 @@ app.use(passport.initialize());
 app.use(passport.session()); //for persistent login sessions
 
 //Routing
-require('./config/routes.js')(passport,app,express,path,io,server,configDB);
+require('./config/routes.js')(app);
 //routeApp;
 
 //Load chatroom
-require('./config/profile.js')(io,app,express,server);
 
 app.listen(port);
 console.log('Listening on port: ' + port);
