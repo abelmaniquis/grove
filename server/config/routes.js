@@ -27,7 +27,6 @@ Process the signup form
     successRedirect : '/chat', //redirect to chat page
     failureRedirect: '/signup', //redirect back to signup page
     failureFlash: 'Invalid username or password.' //display message upon failure to login, may require flash library
-    
   }));
   //Process the login form
   app.post('/login', passport.authenticate('local-login',{
@@ -36,19 +35,18 @@ Process the signup form
   }));
 
 /*-------------------------------------
-CHATROOM
+PROFILE
 Only accessible to registered users
 use route middlware to verify this (isLoggedIn function)
 -------------------------------------*/
-  app.get("/chat",function(req,res){
-    console.log("HERE IS THE CHAT PAGE")
-    res.sendFile(path.join(__dirname + '../../../client/chat.html'));
+  app.get("/profile",function(req,res){
+    console.log("HERE IS THE PROFILE PAGE")
+    res.sendFile(path.join(__dirname + '../../../client/profile.html'));
+  });
   
   app.get('information',isLoggedIn,function(req,res){
     res.send({user:req.user});
-  });
-  
-    console.log("================SOCKET STUFF=============================================================");
+    
   });
   
   app.get('/logout',function(req,res){

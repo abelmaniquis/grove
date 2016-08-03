@@ -7,10 +7,8 @@ module.exports = function(io,app,express,server){
   //console.log(app);
 app.use(express.static('../client'));
   io.on('connection',function(socket){
-    console.log("CHAT IS CONNECTED");
     
     socket.on('message',function(message){
-      console.log('Received Message: ', message);
       socket.broadcast.emit('message', message);
     });
   });

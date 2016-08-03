@@ -10,7 +10,7 @@ var server = require('http').createServer(app);
 var socket_io = require('socket.io');
 var io = socket_io(server);
 var path = require('path');
-var session = require('express-session');
+var session = require('express-session'); //sessions help keep track of users as they travel through site http://blog.modulus.io/nodejs-and-express-sessions
 
 //Database configuration
 mongoose.connect(configDB.url);
@@ -31,7 +31,7 @@ require('./config/routes.js')(passport,app,express,path,io,server,configDB);
 //routeApp;
 
 //Load chatroom
-require('./config/chatroom.js')(io,app,express,server);
+require('./config/profile.js')(io,app,express,server);
 
 app.listen(port);
 console.log('Listening on port: ' + port);
