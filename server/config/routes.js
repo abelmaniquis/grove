@@ -26,10 +26,10 @@ Process the signup form
   app.post('/signup',passport.authenticate('local-login',{
     successRedirect : '/chat', //redirect to chat page
     failureRedirect: '/signup', //redirect back to signup page
-    failureFlash: 'Invalid username or password.'
+    failureFlash: 'Invalid username or password.' //display message upon failure to login, may require flash library
     
   }));
-  
+  //Process the login form
   app.post('/login', passport.authenticate('local-login',{
     successRedirect : '/profile',
     failureRedirect : '/login'
@@ -37,8 +37,8 @@ Process the signup form
 
 /*-------------------------------------
 CHATROOM
-
 Only accessible to registered users
+use route middlware to verify this (isLoggedIn function)
 -------------------------------------*/
   app.get("/chat",function(req,res){
     console.log("HERE IS THE CHAT PAGE")

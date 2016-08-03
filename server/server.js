@@ -7,10 +7,8 @@ var passport = require("passport");
 var bodyParser = require("body-parser"); //For using html in the app
 var configDB = require('./config/database.js');
 var server = require('http').createServer(app);
-
 var socket_io = require('socket.io');
 var io = socket_io(server);
-
 var path = require('path');
 var session = require('express-session');
 
@@ -21,20 +19,19 @@ require('./config/passport')(passport); //passing passport for configuration
 
 //set up express application
 
+app.use(bodyParser()); //Get information from html forms
+
 //Required for passport
-app.use(session({secret: 'mynameisabel'}));
+app.use(session({secret: 'mynameisabel'})); //session secret
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session()); //for persistent login sessions
 
 //Routing
-var routeApp = require('./config/routes.js')(passport,app,express,path,io,server,configDB);
-routeApp;
+require('./config/routes.js')(passport,app,express,path,io,server,configDB);
+//routeApp;
 
 //Load chatroom
-console.log("routeApp");
-var chatroom = require('./config/chatroom.js')(io,app,express,server);
-chatroom;
-console.log(chatroom);
+require('./config/chatroom.js')(io,app,express,server);
 
 app.listen(port);
 console.log('Listening on port: ' + port);
