@@ -56,7 +56,8 @@ use route middlware to verify this (isLoggedIn function)
     res.sendFile(path.join(route + '/client/profile.html'));
   });
   
-  app.get('information',isLoggedIn,function(req,res){
+  app.get('/information',function(req,res){
+    console.log({user:req.user});
     res.send({user:req.user});
     
   });

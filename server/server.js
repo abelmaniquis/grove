@@ -26,7 +26,6 @@ app.use(bodyParser()); //Get information from html forms
 app.use(session({secret: 'mynameisabel'})); //session secret
 app.use(passport.initialize());
 app.use(passport.session()); //for persistent login sessions
-
 //Routing
 require('./config/routes.js')(app);
 //routeApp;
