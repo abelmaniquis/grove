@@ -1,22 +1,24 @@
 //config.passport.js
-//http://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
-//console.log("HERE'S PASSPORT!");
+
 var passport = require('passport'),
-  Strategy = require('passport').Strategy,
-  bcrypt = require('bcrypt'),
-  bodyParser = require('body-parser'),
+//Load the things we need
+
+Strategy = require('passport').Strategy,
   //Load up the user model
+  
   User = require('../api/user/user.model.js');
+  
+console.log("CALLING USER FROM PASSPORT.JS")
+console.log(User);
 
 module.exports = function(passport){
   
-  console.log("HERE's PASSPORT!");
-  console.log(User);
-  //use to serialize the user for the session
-  //passport needs to serialize and unserialize user sessions
+  //Serialize user
   passport.serializeUser(function(user,done){
     done(null,user.id);
   });
+  
+  //Deserialize user
   passport.deserializeUser(function(id,done){
     User.findbyId(id, function(err, user){
       done(err, user);

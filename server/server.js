@@ -6,9 +6,7 @@ var mongoose = require("mongoose");
 var passport = require("passport");
 var bodyParser = require("body-parser"); //For using html in the app
 var configDB = require('./config/database.js');
-var server = require('http').createServer(app);
 var socket_io = require('socket.io');
-var io = socket_io(server);
 var path = require('path');
 var session = require('express-session'); //sessions help keep track of users as they travel through site http://blog.modulus.io/nodejs-and-express-sessions
 
@@ -16,7 +14,7 @@ var session = require('express-session'); //sessions help keep track of users as
 mongoose.connect(configDB.url);
 
 //Passing passport for configuration
-require('./config/passport')(passport); 
+require('./config/passport'); 
 
 //set up express application
 

@@ -34,6 +34,7 @@ SIGNUP PAGE
   
 /*
 Process the signup form
+Do all our passport stuff here
 */
   app.post('/signup',passport.authenticate('local-signup',{
     successRedirect : '/profile', //redirect to chat page
@@ -57,7 +58,14 @@ use route middlware to verify this (isLoggedIn function)
   });
   
   app.get('/information',function(req,res){
-    console.log({user:req.user});
+    
+    /*
+        USING THIS TO TEST THE USER AND PASSWORD
+        CURRENTLY PASSING IN AN EMPTY OBJECT
+        GET THE USER OUT OF SESSION AND PASS TO TEMPLATE
+    */
+    
+    //console.log({user:req.user});
     res.send({user:req.user});
     
   });
@@ -67,12 +75,12 @@ use route middlware to verify this (isLoggedIn function)
     res.redirect('/');
     console.log("Log out");
   });
-  
-/*
-DATABASE.JSON
-*/
 
 };
+
+/*------------------------------------------
+FUNCTION FOR CHECKING IF USER IS LOGGED IN
+--------------------------------------------*/
 
 function isLoggedIn(req,res,next){
   if(req.isAuthenticated())
