@@ -1,9 +1,13 @@
 //app/routes.js
-var passport = require('passport');
+//var passport = require('passport');
 var path = require('path');
-module.exports =function(app){ //don't need to pass everything
+module.exports =function(app,passport){ //don't need to pass everything
 //app.use(express.static('public'));
 //https://scotch.io/tutorials/use-expressjs-to-deliver-html-files
+
+//var passport = require('passport');
+
+console.log(passport);
 
 var route = __dirname + '../../../client';
 /*-------------------
@@ -12,14 +16,14 @@ LOGIN PAGE
   app.get("/",function(req,res){
     //load login page by default
     console.log("HERE IS THE HOME PAGE");
-    res.sendFile(path.join(route +'/index.html')); //set ../../../client/
+   res.status(200).sendFile(path.join(route +'/index.html')); //set ../../../client/
   });
 
 /*--------------------
 LOGIN PAGE
 ---------------------*/
   app.get("/login",function(req,res){
-    res.sendFile(path.join(route + '/login.html'));
+    res.status(200).sendFile(path.join(route + '/login.html'));
   })
 
 
@@ -28,8 +32,7 @@ SIGNUP PAGE
 -------------------------------*/
 
   app.get("/signup",function(req,res){
-    console.log("HERE IS THE SIGNUP PAGE");
-    res.sendFile(path.join(route + '/signup.html'));
+    res.status(200).sendFile(path.join(route + '/signup.html'));
   });
   
 /*
@@ -38,8 +41,8 @@ Do all our passport stuff here
 */
   app.post('/signup',passport.authenticate('local-signup',{
     successRedirect : '/profile', //redirect to chat page
-    failureRedirect: '/signup', //redirect back to signup page
-    failureFlash: 'Invalid username or password.' //display message upon failure to login, may require flash library
+    failureRedirect: '/signup' //redirect back to signup page
+    //failureFlash: 'Invalid username or password.' //display message upon failure to login, may require flash library
   }));
   //Process the login form
   app.post('/login', passport.authenticate('local-login',{

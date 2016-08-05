@@ -1,5 +1,5 @@
 //app/server/api/user/user.model.js
-
+//Trying to pass this object to server.js
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 

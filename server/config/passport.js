@@ -6,7 +6,7 @@ var passport = require('passport'),
 Strategy = require('passport').Strategy,
   //Load up the user model
   
-  User = require('../api/user/user.model.js');
+User = require('../api/user/user.model.js');
   
 console.log("CALLING USER FROM PASSPORT.JS")
 console.log(User);

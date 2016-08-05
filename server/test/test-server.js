@@ -9,7 +9,7 @@ var storage = server.storage;
 chai.use(chaiHttp);
 
 describe('grove',function(){
-  it('should get html page',function(done){
+  it('should return status(200)',function(done){
     chai.request(app)
     .get('/')
     .end(function(err,res){
