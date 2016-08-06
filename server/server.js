@@ -14,9 +14,7 @@ var path = require('path');
 
 var configDB = require('./config/database.js');
 
-var socket_io = require('socket.io');
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+
 
 
 //Database configuration====================================================
@@ -41,17 +39,6 @@ app.use(passport.session()); //for persistent login sessions
 require('./config/routes.js')(app,passport); //load routes and a fully configured passport
 //=================================================
 //routeApp;
-
-//Load chatroom
-app.get('/chat',function(req,res){
-  res.sendFile('chat.html');
-})
-
-//http://socket.io/get-started/chat/
-
-io.on('connection',function(socket){
-  console.log("A user connected");
-});
 
 
 //launch===========================================

@@ -62,11 +62,27 @@ use route middlware to verify this (isLoggedIn function)
     
   });
   
-  app.get('/chat',function(req,res){
+  /*app.get('/chat',function(req,res){
     res.render(path.join(route + '/client/chat.jade'))
     /*var io = require('socket.io')
     console.log(io);*/
-  });
+  //});
+  
+
+var socket_io = require('socket.io');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+//Load chatroom
+app.get('/chat',function(req,res){
+  //res.send("Hello chat");
+  res.sendFile(__dirname + '/chat.html');
+})
+
+//http://socket.io/get-started/chat/
+
+io.on('connection',function(socket){
+  console.log("A user connected");
+});
   
   app.get('/logout',function(req,res){
     req.logout();
