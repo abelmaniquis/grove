@@ -1,6 +1,6 @@
 var User = require('./user.model');
 
-function UserController(){}
+function UserController(User){}
 
 UserController.prototype.getUsers = function(req,res){
   return new Promise(function(resolve, reject){

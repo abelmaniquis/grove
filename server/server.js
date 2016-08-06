@@ -4,21 +4,29 @@ var app = express();
 var port = process.env.PORT || 8080;
 var mongoose = require("mongoose");
 var passport = require("passport");
+
+var morgan = require('morgan');
+
 var bodyParser = require("body-parser"); //For using html in the app
+var session = require('express-session'); //sessions help keep track of users as they travel through site
+
+var path = require('path');
+
 var configDB = require('./config/database.js');
 var socket_io = require('socket.io');
-var path = require('path');
-var session = require('express-session'); //sessions help keep track of users as they travel through site http://blog.modulus.io/nodejs-and-express-sessions
 
-//Database configuration
+//Database configuration====================================================
 mongoose.connect(configDB.url);
 
 //Passing passport for configuration
 require('./config/passport')(passport); //pass passport for configuration
 
 //set up express application
+app.use(morgan('dev')); //log requests to the console.
 
 app.use(bodyParser()); //Get information from html forms
+//Jade
+app.set('view engine','jade'); //set up jade for templating
 
 //Required for passport
 app.use(session({secret: 'mynameisabel'})); //session secret
@@ -31,5 +39,7 @@ require('./config/routes.js')(app,passport); //load routes and a fully configure
 //routeApp;
 
 //Load chatroom
+
+//launch===========================================
 app.listen(port);
 console.log('Listening on port: ' + port);
