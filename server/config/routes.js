@@ -52,15 +52,20 @@ Only accessible to registered users
 use route middlware to verify this (isLoggedIn function)
 -------------------------------------*/
   app.get("/profile",isLoggedIn,function(req,res){
-    res.render(path.join(route + '/client/profile.html'),{
-      user: req.user
-    });
+    res.render(path.join(route + '/client/profile.jade'),{
+      user: req.user});
     //res.send({user:req.user});
   });
   
   app.get('/information',function(req,res){
     res.send({user:req.user});
     
+  });
+  
+  app.get('/chat',function(req,res){
+    res.render(path.join(route + '/client/chat.jade'))
+    /*var io = require('socket.io')
+    console.log(io);*/
   });
   
   app.get('/logout',function(req,res){
