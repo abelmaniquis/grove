@@ -10,8 +10,9 @@ var route = __dirname + '../../../client';
 LOGIN PAGE
 --------------------*/
   app.get("/",function(req,res){
+    res.status(200).sendFile(__dirname + '/index.html');
     //load login page by default
-   res.status(200).render(path.join(route +'/index.jade')); //set ../../../client/
+   //res.status(200).render(path.join(route +'/index.html')); //set ../../../client/
   });
 
 /*--------------------
@@ -19,7 +20,7 @@ LOGIN PAGE
 ---------------------*/
 //show the login form
   app.get("/login",function(req,res){
-    res.status(200).render(path.join(route + '/login.jade'));
+    res.status(200).sendFile(__dirname + '/login.html');
   })
   
   app.post('/login', passport.authenticate('local-login',{
@@ -32,7 +33,7 @@ SIGNUP PAGE
 -------------------------------*/
 
   app.get("/signup",function(req,res){
-    res.status(200).render(path.join(route + '/signup.jade'));
+    res.status(200).sendFile(__dirname + '/signup.html');
   });
 
 /*
@@ -59,21 +60,15 @@ use route middlware to verify this (isLoggedIn function)
   
   app.get('/information',function(req,res){
     res.send({user:req.user});
-    
   });
   
-  /*app.get('/chat',function(req,res){
-    res.render(path.join(route + '/client/chat.jade'))
-    /*var io = require('socket.io')
-    console.log(io);*/
-  //});
   
 
 var socket_io = require('socket.io');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 //Load chatroom
-app.get('/chat',function(req,res){
+app.get('/chat',isLoggedIn,function(req,res){
   //res.send("Hello chat");
   res.sendFile(__dirname + '/chat.html');
 })
@@ -97,7 +92,6 @@ FAILURE TO SIGN IN
     res.render(path.join(route + '/failure.jade'));
   });
 };
-
 
 
 
