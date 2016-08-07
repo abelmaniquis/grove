@@ -100,6 +100,3 @@ module.exports = function(passport){
   }));
 console.log("END OF PASSPORT FUNCTION");  
 };
-/*  
-ask about connect-flash middleware.
-*/

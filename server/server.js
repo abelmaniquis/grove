@@ -27,8 +27,6 @@ require('./config/passport')(passport); //pass passport for configuration
 app.use(morgan('dev')); //log requests to the console.
 
 app.use(bodyParser()); //Get information from html forms
-//Jade
-app.set('view engine','jade'); //set up jade for templating
 
 //Required for passport
 app.use(session({secret: 'mynameisabel'})); //session secret
