@@ -6,17 +6,20 @@ module.exports =function(app,passport){ //don't need to pass everything
 //var passport = require('passport');
 var path = require('path');
 var route = __dirname + '../../../client';
+
 /*-------------------
+
 LOGIN PAGE
+
 --------------------*/
   app.get("/",function(req,res){
     res.status(200).sendFile(__dirname + '/index.html');
-    //load login page by default
-   //res.status(200).render(path.join(route +'/index.html')); //set ../../../client/
   });
 
 /*--------------------
+
 LOGIN PAGE
+
 ---------------------*/
 //show the login form
   app.get("/login",function(req,res){
@@ -53,31 +56,52 @@ Only accessible to registered users
 use route middlware to verify this (isLoggedIn function)
 -------------------------------------*/
   app.get("/profile",isLoggedIn,function(req,res){
-    res.render(path.join(route + '/client/profile.jade'),{
+    res.status(200).render(path.join(route + '/client/profile.jade'),{
       user: req.user});
   });
+  
+/*-------------------------------------------
+INFORMATION:
+this is to check to see if the user object has been passed
+----------------------------------------------*/
   
   app.get('/information',function(req,res){
     res.send({user:req.user});
   });
   
-  
+ 
+/*--------------------------------------------
 
+CHAT
+
+Getting socket.io to respond
+http://stackoverflow.com/questions/24793255/socket-io-cant-get-it-to-work-having-404s-on-some-kind-of-polling-call
+---------------------------------------------*/
+
+
+/*
 var socket_io = require('socket.io');
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var io = require('socket.io')(app);
 //Load chatroom
-app.get('/chat',isLoggedIn,function(req,res){
-  //res.send("Hello chat");
-  res.sendFile(__dirname + '/chat.html');
-})
+
+  app.get('/chat',function(req,res){
+    //res.send("Hello chat");
+    res.sendFile(__dirname + '/chat.html');
+  })
 
 //http://socket.io/get-started/chat/
 
-io.on('connection',function(socket){
-  console.log("A user connected");
-});
-  
+
+  io.on('connection',function(socket){
+    console.log("A user connected");
+  });
+*/
+
+
+/*--------------------------------
+LOGOUT
+---------------------------------*/
   app.get('/logout',function(req,res){
     req.logout();
     res.redirect('/');

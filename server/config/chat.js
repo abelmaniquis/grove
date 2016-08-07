@@ -8,7 +8,7 @@ $(document).ready(function() {
     };
 
     input.on('keydown', function(event) {
-        if (event.keyCode != 13) {
+        if (event.keyCode != 13){
             return;
         }
 
