@@ -56,6 +56,7 @@ Only accessible to registered users
 use route middlware to verify this (isLoggedIn function)
 -------------------------------------*/
   app.get("/profile",isLoggedIn,function(req,res){
+    //testing login access
     res.status(200).sendFile(__dirname + 'client/profile.html')
   });
 
