@@ -1,6 +1,6 @@
 //app/routes.js
 //var passport = require('passport');
-module.exports =function(app,passport){ //don't need to pass everything
+module.exports =function(app,passport,io){ //don't need to pass everything
 //app.use(express.static('public'));
 //https://scotch.io/tutorials/use-expressjs-to-deliver-html-files
 //var passport = require('passport');
@@ -77,11 +77,33 @@ CHAT
 Getting socket.io to respond
 http://stackoverflow.com/questions/24793255/socket-io-cant-get-it-to-work-having-404s-on-some-kind-of-polling-call
 
-
 Currently on server.js
 
-
 ---------------------------------------------*/
+
+//Load chatroom
+
+  app.get('/chat',function(req,res){
+    res.status(200).sendFile(__dirname + '/config/client/chat.html');
+  })
+  
+  //Once the app GETS chat. socket.io should connect. and then should do the following:
+
+//http://socket.io/get-started/chat/
+  var numUsers = 0;
+  
+  io.on('connection',function(socket){
+    var addedUser = false;
+    console.log("A user connected");
+    
+    socket.on(' new message',function(data){
+      socket.broadcast.emit('new message', {
+        //username: username from database
+        message: data
+      })
+    });
+    
+  });
 
 
 

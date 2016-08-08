@@ -31,9 +31,11 @@ var io = socket_io.listen(server);  //pass a http.Server instance
 var server = http.Server(app);
 //Load chatroom
 
-  app.get('/chat',function(req,res){
+ /* app.get('/chat',function(req,res){
     res.status(200).sendFile(__dirname + '/config/client/chat.html');
   })
+  
+  //Once the app GETS chat. socket.io should connect. and then should do the following:
 
 //http://socket.io/get-started/chat/
 
@@ -45,7 +47,7 @@ var server = http.Server(app);
     });
     
   });
-
+*/
 
 //Database configuration====================================================
 mongoose.connect(configDB.url);
@@ -66,7 +68,7 @@ app.use(passport.initialize());
 app.use(passport.session()); //for persistent login sessions
 
 //Routing===========================================
-require('./config/routes.js')(app,passport); //load routes and a fully configured passport
+require('./config/routes.js')(app,passport,io); //load routes and a fully configured passport
 //=================================================
 
 
