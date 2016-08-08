@@ -1,13 +1,13 @@
 //app/routes.js
 //var passport = require('passport');
-module.exports =function(app,passport,io){ //don't need to pass everything
-//app.use(express.static('public'));
-//https://scotch.io/tutorials/use-expressjs-to-deliver-html-files
-//var passport = require('passport');
 
-//Right now, the client folder is in the same folder as routes in order to keep the path simple.
-var path = require('path');
-var route = __dirname + '../../../client';
+module.exports =function(app,passport){ //don't need to pass everything
+  var io = require('socket.io');
+  var http = require('http');
+  var path = require('path');
+
+app.set('client', path.join(__dirname, '../../client/views'));
+var clientPath = app.get('client');
 
 /*-------------------
 
@@ -15,7 +15,7 @@ LOGIN PAGE
 
 --------------------*/
   app.get("/",function(req,res){
-    res.status(200).sendFile(__dirname + '/client/index.html');
+    res.status(200).sendFile(path.join(clientPath, 'index.html'));
   });
 
 /*--------------------
@@ -26,13 +26,15 @@ LOGIN PAGE
 //show the login form
   app.get("/login",function(req,res){
     //need to send user information to this page
-    res.status(200).sendFile(__dirname + '/client/login.html');
-  })
+    res.status(200).sendFile(path.join(clientPath, 'login.html'));
+  });
   
   app.post('/login', passport.authenticate('local-login',{
     successRedirect : '/profile',
     failureRedirect : '/failure'
-  }));
+  }), function(req, res){
+    console.log('here it is', req.body);
+  });
 
 /*------------------------------
 SIGNUP PAGE
@@ -40,7 +42,7 @@ SIGNUP PAGE
 
   app.get("/signup",function(req,res){
     //need to send user information to the signup page
-    res.status(200).sendFile(__dirname + '/client/signup.html');
+    res.status(200).sendFile(path.join(clientPath, 'signup.html'));
   });
 
 /*
@@ -61,7 +63,7 @@ use route middlware to verify this (isLoggedIn function)
 -------------------------------------*/
   app.get("/profile",isLoggedIn,function(req,res){
     //testing login access
-    res.status(200).sendFile(__dirname + '/client/profile.html')
+    res.status(200).sendFile(path.join(clientPath, 'profile.html'));
   });
 
 /*-------------------------------------------
@@ -75,41 +77,16 @@ this is to check to see if the user object has been passed
   
  
 /*--------------------------------------------
-
 CHAT
-
-Getting socket.io to respond
-http://stackoverflow.com/questions/24793255/socket-io-cant-get-it-to-work-having-404s-on-some-kind-of-polling-call
-
-Currently on server.js
-
 ---------------------------------------------*/
 
 //Load chatroom
 
   app.get('/chat',function(req,res){
-    res.status(200).sendFile(__dirname + '/config/client/chat.html');
+    res.status(200).sendFile(path.join(clientPath,'chat.html'));
   })
   
   //Once the app GETS chat. socket.io should connect. and then should do the following:
-
-//http://socket.io/get-started/chat/
-  var numUsers = 0;
-  
-  io.on('connection',function(socket){
-    var addedUser = false;
-    console.log("A user connected");
-    
-    socket.on(' new message',function(data){
-      socket.broadcast.emit('new message', {
-        //username: username from database
-        message: data
-      })
-    });
-    
-  });
-
-
 
 /*--------------------------------
 LOGOUT
@@ -124,7 +101,7 @@ LOGOUT
 FAILURE TO SIGN IN
 */
   app.get('/failure',function(req,res){
-    res.sendFile(__dirname + '/failure.html');
+    res.sendFile(path.join(clientPath, 'failure.html'));
   });
 };
 
@@ -138,10 +115,10 @@ function isLoggedIn(req,res,next){
   if(req.isAuthenticated())
     return next();
   else{
-    console.log("ACCESS DENIED");
+    res.redirect('/failure');
   }
   
-  res.redirect('/failure');
+  
 }
 
 //Look up chrome ARC

@@ -40,3 +40,13 @@ express-session
 configDB
 
 Fix libraries
+
+
+----------------------------
+FOLDER STRUCTURE:
+----------------------------
+client
+  views
+  
+Server
+  rou
