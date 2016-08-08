@@ -4,7 +4,7 @@
 var LocalStrategy = require('passport-local').Strategy;
   //Load up the user model
   
-var User = require('./user.model.js');
+var User = require('../api/user/user.model.js');
 
 var Ralph = new User();
 Ralph.local.name = "Ralph";

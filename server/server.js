@@ -9,7 +9,7 @@ var port = process.env.PORT || 8080;
 var mongoose = require("mongoose");
 var passport = require("passport");
 
-var morgan = require('morgan');
+var morgan = require('morgan'); //Logs http requests
 
 var bodyParser = require("body-parser"); //For using html in the app
 var session = require('express-session'); //sessions help keep track of users as they travel through site

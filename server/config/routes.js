@@ -13,7 +13,7 @@ LOGIN PAGE
 
 --------------------*/
   app.get("/",function(req,res){
-    res.status(200).sendFile(__dirname + '/index.html');
+    res.status(200).sendFile(__dirname + '/client/index.html');
   });
 
 /*--------------------
@@ -23,7 +23,7 @@ LOGIN PAGE
 ---------------------*/
 //show the login form
   app.get("/login",function(req,res){
-    res.status(200).sendFile(__dirname + '/login.html');
+    res.status(200).sendFile(__dirname + '/client/login.html');
   })
   
   app.post('/login', passport.authenticate('local-login',{
@@ -36,7 +36,7 @@ SIGNUP PAGE
 -------------------------------*/
 
   app.get("/signup",function(req,res){
-    res.status(200).sendFile(__dirname + '/signup.html');
+    res.status(200).sendFile(__dirname + '/client/signup.html');
   });
 
 /*
@@ -55,11 +55,11 @@ PROFILE
 Only accessible to registered users
 use route middlware to verify this (isLoggedIn function)
 -------------------------------------*/
-  app.get("/profile",isLoggedIn,function(req,res){
+/*  app.get("/profile",isLoggedIn,function(req,res){
     res.status(200).render(path.join(route + '/client/profile.jade'),{
       user: req.user});
   });
-  
+*/  
 /*-------------------------------------------
 INFORMATION:
 this is to check to see if the user object has been passed
