@@ -1,5 +1,5 @@
 <!doctype html>
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Chatroom</title>
@@ -8,16 +8,17 @@
 <body>
   <ul class ="chat">
     <li class="chat page">
-      <div class="messages">
+      <div class="chatArea">
+      <ul class="messages"></ul>
       </div>
       <input class="inputMessage" placeholder="Type here"/>
     </li>
   </ul>
   
-<script src="//code.jquery.com/jquery-2.1.0.js"></script>
-<script src="./chat.js"></script> 
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
+<script src="/chat.js"></script> 
   
 </body>
-<!-- JS -->
+</html>
 

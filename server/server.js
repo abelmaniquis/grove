@@ -29,7 +29,7 @@ var server = http.Server(app);
 //Load chatroom
 
   app.get('/chat',function(req,res){
-    res.status(200).sendFile(__dirname + '/config/chat.html');
+    res.status(200).sendFile(__dirname + '/config/client/chat.html');
   })
 
 //http://socket.io/get-started/chat/
