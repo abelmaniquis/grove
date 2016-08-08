@@ -4,6 +4,8 @@ module.exports =function(app,passport,io){ //don't need to pass everything
 //app.use(express.static('public'));
 //https://scotch.io/tutorials/use-expressjs-to-deliver-html-files
 //var passport = require('passport');
+
+//Right now, the client folder is in the same folder as routes in order to keep the path simple.
 var path = require('path');
 var route = __dirname + '../../../client';
 
@@ -23,6 +25,7 @@ LOGIN PAGE
 ---------------------*/
 //show the login form
   app.get("/login",function(req,res){
+    //need to send user information to this page
     res.status(200).sendFile(__dirname + '/client/login.html');
   })
   
@@ -36,6 +39,7 @@ SIGNUP PAGE
 -------------------------------*/
 
   app.get("/signup",function(req,res){
+    //need to send user information to the signup page
     res.status(200).sendFile(__dirname + '/client/signup.html');
   });
 

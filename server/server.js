@@ -19,7 +19,6 @@ var path = require('path');
 
 var morgan = require('morgan'); //Logs http requests to the console, I find it to be useful
 
-
 /*
 TEST CHATROOM. For now, this is separated from the other routes until I can get the room to work
 

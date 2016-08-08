@@ -16,5 +16,12 @@ describe('grove',function(){
     .end(function(res){
       res.should.have.status(200);
     });
+  });
+  it('should be able to access the login page',function(done){
+    chai.request(app)
+    .get('login')
+    .end(function(res){
+      res.should.have.status(200);
+    })
   })
 });
