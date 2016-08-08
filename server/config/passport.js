@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('../api/user/user.model.js');
 
 var Ralph = new User();
-Ralph.local.name = "Ralph";
+Ralph.local.username = "Ralph";
 Ralph.local.password = "12345";
 console.log(Ralph);
 
@@ -30,22 +30,19 @@ module.exports = function(passport){
   --------------*/
   //We are using named strategies for login and signup
   passport.use('local-signup',new LocalStrategy({
-    usernameField:'name',
+    usernameField:'username',
     passwordField: 'password',
     passReqToCallback: true //allows us to pass back the entire request to the callback
   },
-  function(req, name, password, done){
+  function(req, username, password, done){
     //Asynchronous
     //User.findOne wont fire unless data is sent back
     process.nextTick(function(){
     //Find a user whose name is the same as the forms email
-      var userInfo = {'local.name': name}
-      console.log(userInfo);
-      User.findOne(userInfo,function(err,user){
+      User.findOne({"local.username" : username},function(err,user){
         //If there  are any errors, return the error.
         if(err)
           return done(err);
-          
           //Check to see if there's already a user with that email
         if(user){
           console.log("that name is already taken")
@@ -57,14 +54,18 @@ module.exports = function(passport){
           console.log("USER CREATED ");
           console.log(newUser);
           //Set the user's local credentials
-          newUser.local.name = name;
+          newUser.local.username = username;
           newUser.local.password = newUser.generateHash(password);
         
           //Save the user
           newUser.save(function(err){
             if (err)
               throw err;
-            return done(null, newUser);
+            else{
+              console.log("NEW USER:")
+              console.log(newUser);
+              return done(null, newUser);
+            }
           });
         }
     });
@@ -74,7 +75,7 @@ module.exports = function(passport){
   LOCAL LOGIN:
   ---------------------------*/
   passport.use('local-login',new LocalStrategy({
-    usernameField: 'name',
+    usernameField: 'username',
     passwordField: 'password',
     passReqtoCallback: true //Allows us to pass back the entire request to the callback
   },
@@ -82,7 +83,7 @@ module.exports = function(passport){
     
     //find a user whose email is the same as the forms email
     // we are checking to see if the user trying to login already exists
-    User.findOne({'local.name':name},function(err,user){
+    User.findOne({'local.username':name},function(err,user){
       
       //if there are any errors, return the error before anything else
       

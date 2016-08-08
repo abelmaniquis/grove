@@ -55,11 +55,10 @@ PROFILE
 Only accessible to registered users
 use route middlware to verify this (isLoggedIn function)
 -------------------------------------*/
-/*  app.get("/profile",isLoggedIn,function(req,res){
-    res.status(200).render(path.join(route + '/client/profile.jade'),{
-      user: req.user});
+  app.get("/profile",isLoggedIn,function(req,res){
+    res.status(200).sendFile(__dirname + 'client/profile.html')
   });
-*/  
+
 /*-------------------------------------------
 INFORMATION:
 this is to check to see if the user object has been passed
@@ -76,27 +75,13 @@ CHAT
 
 Getting socket.io to respond
 http://stackoverflow.com/questions/24793255/socket-io-cant-get-it-to-work-having-404s-on-some-kind-of-polling-call
+
+
+Currently on server.js
+
+
 ---------------------------------------------*/
 
-
-/*
-var socket_io = require('socket.io');
-var http = require('http').Server(app);
-var io = require('socket.io')(app);
-//Load chatroom
-
-  app.get('/chat',function(req,res){
-    //res.send("Hello chat");
-    res.sendFile(__dirname + '/chat.html');
-  })
-
-//http://socket.io/get-started/chat/
-
-
-  io.on('connection',function(socket){
-    console.log("A user connected");
-  });
-*/
 
 
 /*--------------------------------
