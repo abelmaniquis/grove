@@ -29,25 +29,6 @@ var http = require('http');         //Need http for socket.io
 var server = http.Server(app);
 var io = socket_io.listen(server);  //pass a http.Server instance
 var server = http.Server(app);
-//Load chatroom
-
- /* app.get('/chat',function(req,res){
-    res.status(200).sendFile(__dirname + '/config/client/chat.html');
-  })
-  
-  //Once the app GETS chat. socket.io should connect. and then should do the following:
-
-//http://socket.io/get-started/chat/
-
-  io.on('connection',function(socket){
-    console.log("A user connected");
-    
-    socket.on('message',function(message){
-      socket.broadcast.emit('message',message);
-    });
-    
-  });
-*/
 
 //Database configuration====================================================
 mongoose.connect(configDB.url);
