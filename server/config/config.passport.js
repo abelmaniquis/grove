@@ -29,10 +29,46 @@ module.exports = function() {
       passwordField: 'password',
       passReqToCallback: true //allows us to pass back the entire request to the callback
     },
-    function(username, password, done) {
-      //Asynchronous
-      //User.findOne wont fire unless data is sent bac
+    function(req,res, done) {
+      var username = req.body.username;
+      var password = req.body.password;
+      
+      User.findOne({
+        'local.username':username
+      },function(err,user){
+        if(err){
+          return done(err);
+        }else if(user){
+          console.log("The User already exists");
+        }else{
+          var newUser = new User({
+            'local.username': username,
+            'local.password': password
+          });
+          newUser.save(function(err){
+            if(err){
+              return done(err);
+            }else{
+              console.log('User saved');
+            }
+          });
+        }
+      });
+      /*
+      Method:
+      GET username and password from user
+      check to see if username exists.
+      If it exists inform the user that they cannot use that username.
+      */
     }));
+    
+    
+    
+    
+    
+    
+    
+    
   /*--------------------------
   LOCAL LOGIN:
   ---------------------------*/
@@ -57,13 +93,10 @@ module.exports = function() {
         //if no user is found, return th
         if (!user) {
           return done(null, false,"No user found");
-        }
-        //If the user is found but the password is wrong
-        if (!user.validPassword(password)) {
+        }else if (!user.validPassword(password)) {
           console.log('wrong password')
           return done(null, false, 'Wrong Password');
-        }
-        if (user.validPassword(password)){
+        }else if (user.validPassword(password)){
           return done(null, user);
         }
 

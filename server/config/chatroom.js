@@ -4,4 +4,6 @@ var http = require('http');         //Need http for socket.io
 var server = http.Server(app);
 var io = socket_io.listen(server)
 
-console.log(io);
+io.on('connection',function(){
+  console.log("socket.io is connected");
+})

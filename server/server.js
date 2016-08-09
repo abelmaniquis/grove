@@ -19,8 +19,6 @@ require('./config/config.express')(app);
 //Passing passport for configuration
 require('./config/config.passport')(); //pass passport for configuration
 
-
-
 //Routing===========================================
 require('./config/routes.js')(app); //load routes and a fully configured passport
 //=================================================
