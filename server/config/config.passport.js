@@ -1,24 +1,13 @@
 //config.passport.js
 
+var passport = require('passport');
 //Load the things we need
 var LocalStrategy = require('passport-local').Strategy;
 //Load up the user model
 
 var User = require('../api/user/user.model.js');
-/* var Ralph = new User();
- Ralph.local.username = "Ralph";
- Ralph.local.password = "12345";
- console.log(Ralph);
- Ralph.save();
-*/
 
-/*var John = new User();
-  John.local.username = "John";
-  John.local.password = "hello";
-  console.log(John);
-  John.save();
-*/
-module.exports = function(passport) {
+module.exports = function() {
   //Serialize user
   passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -40,7 +29,10 @@ module.exports = function(passport) {
       passwordField: 'password',
       passReqToCallback: true //allows us to pass back the entire request to the callback
     },
-    
+    function(username, password, done) {
+      //Asynchronous
+      //User.findOne wont fire unless data is sent bac
+    }));
   /*--------------------------
   LOCAL LOGIN:
   ---------------------------*/
@@ -79,3 +71,17 @@ module.exports = function(passport) {
     }));
   console.log("END OF PASSPORT FUNCTION");
 };
+
+/* var Ralph = new User();
+ Ralph.local.username = "Ralph";
+ Ralph.local.password = "12345";
+ console.log(Ralph);
+ Ralph.save();
+*/
+
+/*var John = new User();
+  John.local.username = "John";
+  John.local.password = "hello";
+  console.log(John);
+  John.save();
+*/

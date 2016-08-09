@@ -1,11 +1,11 @@
 //app/routes.js
-//var passport = require('passport');
-
-module.exports =function(app,passport){ //don't need to pass everything
+var passport = require('passport');
+module.exports =function(app){ //don't need to pass everything
   var io = require('socket.io');
   var http = require('http');
   var path = require('path');
-
+  
+  
 app.set('client', path.join(__dirname, '../../client/views'));
 var clientPath = app.get('client');
 
