@@ -12,7 +12,6 @@ var bodyParser = require("body-parser"); //For using html in the app
 
 var path = require('path');
 
-
 var morgan = require('morgan'); //Logs http requests to the console, I find it to be useful
 
 /*

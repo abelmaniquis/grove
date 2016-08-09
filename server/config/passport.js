@@ -5,7 +5,6 @@ var LocalStrategy = require('passport-local').Strategy;
 //Load up the user model
 
 var User = require('../api/user/user.model.js');
-
 /* var Ralph = new User();
  Ralph.local.username = "Ralph";
  Ralph.local.password = "12345";
@@ -50,31 +49,26 @@ module.exports = function(passport) {
           "local.username": username
         }, function(err, user) {
           //If there  are any errors, return the error.
-          if (err)
+          if (err){
             return done(err);
+          }
           //Check to see if there's already a user with that email
-          if (user) {
+          if (user){
             console.log("that name is already taken")
             return done(null, false);
           } else {
             //If there is no user with that name, 
             //create the user
             var newUser = new User();
-            console.log("USER CREATED ");
-            console.log(newUser);
             //Set the user's local credentials
             newUser.local.username = username;
             newUser.local.password = newUser.generateHash(password);
 
             //Save the user
             newUser.save(function(err) {
-              if (err)
-                throw err;
-              else {
-                console.log("NEW USER:")
-                console.log(newUser);
-                return done(null, newUser);
-              }
+              if (err){
+                throw err;}
+              return done(null, newUser);
             });
           }
         });
@@ -96,21 +90,21 @@ module.exports = function(passport) {
       // we are checking to see if the user trying to login already exists
       User.findOne({
         'local.username': username
-      }, function(err, user) {
+      }, function(err, user){
         //if there are any errors, return the error before anything else
-        if (err) {
+        if (err){
           return done(err);
         }
         //if no user is found, return th
         if (!user) {
-          return done(null, false, 'No user found');
+          return done(null, false,"No user found");
         }
         //If the user is found but the password is wrong
         if (!user.validPassword(password)) {
           console.log('wrong password')
           return done(null, false, 'Wrong Password');
         }
-        if (user.validPassword(password)) {
+        if (user.validPassword(password)){
           return done(null, user);
         }
 
