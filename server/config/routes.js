@@ -45,10 +45,8 @@ SIGNUP PAGE
     res.status(200).sendFile(path.join(clientPath, 'signup.html'));
   });
 
-/*
-Process the signup form
-Do all our passport stuff here
-*/
+//Process the signup form
+
   //process the signup form
   app.post('/signup',passport.authenticate('local-signup',{
     successRedirect : '/profile', //redirect to chat page

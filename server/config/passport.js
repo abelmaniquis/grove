@@ -6,11 +6,25 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../api/user/user.model.js');
 
-module.exports = function(passport){
+/* var Ralph = new User();
+ Ralph.local.username = "Ralph";
+ Ralph.local.password = "12345";
+ console.log(Ralph);
+ Ralph.save();
+*/
+
+/*var John = new User();
+  John.local.username = "John";
+  John.local.password = "hello";
+  console.log(John);
+  John.save();
+*/
+module.exports = function(passport) {
   //Serialize user
   passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
+
   //Deserialize user
   passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
@@ -27,7 +41,7 @@ module.exports = function(passport){
       passwordField: 'password',
       passReqToCallback: true //allows us to pass back the entire request to the callback
     },
-    function(req, username, password, done){
+    function(username, password, done) {
       //Asynchronous
       //User.findOne wont fire unless data is sent back
       process.nextTick(function() {
@@ -41,11 +55,13 @@ module.exports = function(passport){
           //Check to see if there's already a user with that email
           if (user) {
             console.log("that name is already taken")
-            return done(null, false, "That name is already taken");
+            return done(null, false);
           } else {
             //If there is no user with that name, 
             //create the user
             var newUser = new User();
+            console.log("USER CREATED ");
+            console.log(newUser);
             //Set the user's local credentials
             newUser.local.username = username;
             newUser.local.password = newUser.generateHash(password);
@@ -55,6 +71,8 @@ module.exports = function(passport){
               if (err)
                 throw err;
               else {
+                console.log("NEW USER:")
+                console.log(newUser);
                 return done(null, newUser);
               }
             });
@@ -89,6 +107,7 @@ module.exports = function(passport){
         }
         //If the user is found but the password is wrong
         if (!user.validPassword(password)) {
+          console.log('wrong password')
           return done(null, false, 'Wrong Password');
         }
         if (user.validPassword(password)) {

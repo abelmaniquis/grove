@@ -19,11 +19,6 @@ var morgan = require('morgan'); //Logs http requests to the console, I find it t
 TEST CHATROOM. For now, this is separated from the other routes until I can get the room to work
 */
 
-var socket_io = require('socket.io');
-var http = require('http');         //Need http for socket.io
-var server = http.Server(app);
-var io = socket_io.listen(server);  //pass a http.Server instance
-
 //Database configuration====================================================
 mongoose.connect(configDB.url);
 
@@ -45,14 +40,13 @@ app.use(passport.initialize());
 app.use(passport.session()); //for persistent login sessions
 
 //Routing===========================================
-require('./config/routes.js')(app,passport,io); //load routes and a fully configured passport
+require('./config/routes.js')(app,passport); //load routes and a fully configured passport
 //=================================================
 
 
 //routeApp;
 
 //launch===========================================
-server.listen(port);
-//app.listen(port);
+app.listen(port);
 console.log('Listening on port: ' + port);
 

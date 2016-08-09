@@ -1,3 +1,16 @@
-li{
-  list-style-type:none;
+* { margin: 0; padding: 0; box-sizing: border-box; 
+  
+}
+
+body { 
+  font: 13px Helvetica, Arial; 
+  
+}
+
+form{
+  background: green;
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
