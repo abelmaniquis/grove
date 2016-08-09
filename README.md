@@ -50,3 +50,40 @@ client
   
 Server
   rou
+  
+  
+  
+function(username, password, done) {
+      //Asynchronous
+      //User.findOne wont fire unless data is sent back
+      process.nextTick(function() {
+        //Find a user whose name is the same as the forms email
+        User.findOne({
+          "local.username": username
+        }, function(err, user) {
+          //If there  are any errors, return the error.
+          if (err){
+            return done(err);
+          }
+          //Check to see if there's already a user with that email
+          if (user){
+            console.log("that name is already taken")
+            return done(null, false);
+          } else {
+            //If there is no user with that name, 
+            //create the user
+            var newUser = new User();
+            //Set the user's local credentials
+            newUser.local.username = username;
+            newUser.local.password = newUser.generateHash(password);
+
+            //Save the user
+            newUser.save(function(err) {
+              if (err){
+                throw err;}
+              return done(null, newUser);
+            });
+          }
+        });
+      });
+    }));
