@@ -1,5 +1,8 @@
 //app/routes.js
+/*var express = require('express');
+var app = express;*/
 var passport = require('passport');
+
 module.exports =function(app){ //don't need to pass everything
   var io = require('socket.io');
   var http = require('http');
@@ -60,7 +63,6 @@ Only accessible to registered users
 use route middlware to verify this (isLoggedIn function)
 -------------------------------------*/
   app.get("/profile",isLoggedIn,function(req,res){
-    //testing login access
     res.status(200).sendFile(path.join(clientPath, 'profile.html'));
   });
 
@@ -68,19 +70,21 @@ use route middlware to verify this (isLoggedIn function)
 INFORMATION:
 this is to check to see if the user object has been passed
 ----------------------------------------------*/
-  
-  app.get('/information',function(req,res){
-    res.send({user:req.user});
-  });
-  
  
 /*--------------------------------------------
 CHAT
 ---------------------------------------------*/
 
-//Load chatroom
+/*
+need to send css and javascript to the chatroom
+*/ 
 
-  app.get('/chat',function(req,res){
+//Load chatroom
+ // var express = require('express');
+ 
+//Need to have a static file serving middleware on top of the stack in order to pass in the chatroom
+//  app.use(express.static(__dirname + '/client'));
+  app.get('/chat',isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath,'chat.html'));
   })
   

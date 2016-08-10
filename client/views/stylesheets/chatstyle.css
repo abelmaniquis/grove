@@ -1,0 +1,29 @@
+*{
+  box-sizing: border-box;
+}
+
+html{
+  font-weight:200;
+}
+
+html,body{
+  height:100%;
+  margin: 0;
+  padding: 0;
+}
+
+ul{
+  list-style-type:none;
+}
+
+.inputMessage{
+  border:10px solid #000;
+  bottom:0;
+  height: 70px;
+  left:0;
+  outline:none;
+  padding-left:10px;
+  position:absolute;
+  right:0;
+  width:100%;
+}

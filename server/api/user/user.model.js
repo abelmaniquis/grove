@@ -17,17 +17,10 @@ userSchema.methods.validPassword = function(password) {
   var salt = bcrypt.genSaltSync(8);
   var hash = bcrypt.hashSync(password, salt);
   
-  
-  console.log("SALT: ");
-  console.log(salt);
-  
   if(bcrypt.compareSync(password, hash)){
     return true;
   };
   
-  //if (password === this.local.password){
-    //return true;
-  //}
 };
 
 module.exports = mongoose.model('User', userSchema);

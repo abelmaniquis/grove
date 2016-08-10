@@ -8,7 +8,7 @@ var mongoose = require("mongoose");
 var configDB = require('./config/database.js');
 
 //Chatroom configuration====================================================
-require('./config/chatroom');
+//require('./config/chatroom');
 
 //Database configuration====================================================
 mongoose.connect(configDB.url);
