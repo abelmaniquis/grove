@@ -1,12 +1,14 @@
 $(document).ready(function() {
-    var input = $(".inputMessage")
+    //var socket = io();
+    var input = $(".inputMessage");
     var chatPage = $('#chatPage');
-    
+    var messages = $('messages');
     var addMessage = function(message){
-      chatPage.append('<div>' + message + '</div>');  
+      messages.append('<ul>' + message + '</ul>');  
     };
     
     input.on('keydown',function(event){
+        addMessage;
         console.log("I see this");
     })
     

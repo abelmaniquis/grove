@@ -7,15 +7,15 @@ module.exports =function(app){ //don't need to pass everything
   var io = require('socket.io');
   var http = require('http');
   var path = require('path');
+  var express = require('express');
   
+  app.use(express.static('client/views'));
   
 app.set('client', path.join(__dirname, '../../client/views'));
 var clientPath = app.get('client');
 
 /*-------------------
-
 LOGIN PAGE
-
 --------------------*/
   app.get("/",function(req,res){
     res.status(200).sendFile(path.join(clientPath, 'index.html'));
@@ -84,9 +84,13 @@ need to send css and javascript to the chatroom
  
 //Need to have a static file serving middleware on top of the stack in order to pass in the chatroom
 //  app.use(express.static(__dirname + '/client'));
+  
+  
+  require('./chatserv.js');
+  //remember, this is the client path:  __dirname, '../../client/views'
   app.get('/chat',isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath,'chat.html'));
-  })
+  });
   
   //Once the app GETS chat. socket.io should connect. and then should do the following:
 
@@ -105,12 +109,14 @@ FAILURE TO SIGN IN
   app.get('/failure',function(req,res){
     res.sendFile(path.join(clientPath, 'failure.html'));
   });
+  
+  
 };
 
 
 
 /*------------------------------------------
-FUNCTION FOR CHECKING IF USER IS LOGGED IN
+CHECK IF USER IS LOGGED IN
 --------------------------------------------*/
 
 function isLoggedIn(req,res,next){
