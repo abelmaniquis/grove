@@ -81,12 +81,12 @@ need to send css and javascript to the chatroom
 
 //Load chatroom
  // var express = require('express');
- 
-//Need to have a static file serving middleware on top of the stack in order to pass in the chatroom
-//  app.use(express.static(__dirname + '/client'));
   
-  
-  require('./chatserv.js');
+    
+  //serve chat.js
+  //serve chat.css
+  //
+  require('./config.chat.js');
   //remember, this is the client path:  __dirname, '../../client/views'
   app.get('/chat',isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath,'chat.html'));

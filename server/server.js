@@ -1,10 +1,11 @@
 //Set up
+
 var express = require("express");
 var app = express();
 var port = process.env.PORT || 8080;
-
-// Database/mongoDB
 var mongoose = require("mongoose");
+// Database/mongoDB=================================
+
 var configDB = require('./config/database.js');
 
 //Chatroom configuration====================================================
