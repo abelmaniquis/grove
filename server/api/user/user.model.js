@@ -17,7 +17,11 @@ userSchema.methods.validPassword = function(password) {
   var salt = bcrypt.genSaltSync(8);
   var hash = bcrypt.hashSync(password, salt);
   
-  if(bcrypt.compareSync(password, hash)){
+  console.log("THIS LOCAL PASSWORD")
+  console.log(this.local.password);
+  console.log(hash);
+  
+  if(bcrypt.compareSync(this.local.password, hash)){
     return true;
   };
   

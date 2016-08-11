@@ -4,6 +4,10 @@ var express = require("express");
 var app = express();
 var port = process.env.PORT || 8080;
 var mongoose = require("mongoose");
+
+//For testing socket.io
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 // Database/mongoDB=================================
 
 var configDB = require('./config/database.js');
@@ -31,5 +35,3 @@ require('./config/routes.js')(app); //load routes and a fully configured passpor
 app.listen(port, function(){
     console.log('Listening on port: ' + port);
 });
-
-

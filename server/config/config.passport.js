@@ -63,12 +63,6 @@ module.exports = function() {
     }));
     
     
-    
-    
-    
-    
-    
-    
   /*--------------------------
   LOCAL LOGIN:
   ---------------------------*/
@@ -90,16 +84,19 @@ module.exports = function() {
         if (err){
           return done(err);
         }
-        //if no user is found, return th
+        //if no user is found, redirect to  failure
         if (!user) {
-          return done(null, false,"No user found");
-        }else if (!user.validPassword(password)) {
+          return done(null, false);
+        }
+        
+        //If password is incorrect, redirect to failure
+        if (!user.validPassword(password)) {
           console.log('wrong password')
-          return done(null, false, 'Wrong Password');
-        }else if (user.validPassword(password)){
+          return done(null,false);
+        }
+        if (user.validPassword(password)){
           return done(null, user);
         }
-
       });
     }));
   console.log("END OF PASSPORT FUNCTION");

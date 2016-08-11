@@ -8,23 +8,20 @@ module.exports =function(app){ //don't need to pass everything
   var http = require('http');
   var path = require('path');
   var express = require('express');
-  
   app.use(express.static('client/views'));
   
 app.set('client', path.join(__dirname, '../../client/views'));
 var clientPath = app.get('client');
 
 /*-------------------
-LOGIN PAGE
+PROFILE PAGE
 --------------------*/
   app.get("/",function(req,res){
     res.status(200).sendFile(path.join(clientPath, 'index.html'));
   });
 
 /*--------------------
-
 LOGIN PAGE
-
 ---------------------*/
 //show the login form
   app.get("/login",function(req,res){
@@ -56,7 +53,6 @@ SIGNUP PAGE
     failureRedirect: '/failure' //redirect back to signup page
   }));
   //Process the login form
-
 /*-------------------------------------
 PROFILE
 Only accessible to registered users
@@ -88,8 +84,12 @@ need to send css and javascript to the chatroom
   //
   require('./config.chat.js');
   //remember, this is the client path:  __dirname, '../../client/views'
+  //app.use("/chat", express.static(__dirname + '/chat'));
+  
+  //How do I send the css and script?
+  
   app.get('/chat',isLoggedIn,function(req,res){
-    res.status(200).sendFile(path.join(clientPath,'chat.html'));
+    res.status(200).sendFile(path.join(clientPath,'/chat/chat.html'));
   });
   
   //Once the app GETS chat. socket.io should connect. and then should do the following:
@@ -102,14 +102,12 @@ LOGOUT
     res.redirect('/');
   });
 
-
 /*
 FAILURE TO SIGN IN
 */
   app.get('/failure',function(req,res){
-    res.sendFile(path.join(clientPath, 'failure.html'));
+   res.send("Access Denied");
   });
-  
   
 };
 
