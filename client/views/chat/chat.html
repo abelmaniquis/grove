@@ -5,37 +5,13 @@
   <meta charset="utf-8">
   <!--JS-->
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  
+
   <script src="/socket.io/socket.io.js"></script>
-  <script src="chat.js"></script> 
-<!--
-  <script>
-    //Temporary Script in html
-    //var socket = io();
-    $(document).ready(function() {
-    //var socket = io();
-    var input = $(".inputMessage");
-    var chatPage = $('#chatPage');
-    var messages = $('.messages');
-    var addMessage = function(message){
-      messages.append('<ul>' + message + '</ul>');  
-    };
-    
-    input.on('keydown',function(event){
-        if (event.keyCode !=13){
-            return;
-        }
-        var message = input.val();
-        addMessage("USERNAME: " + message);
-        input.val('');
-    })
-});
-  </script>
--->
+  <script src="/chat/chat.js"></script> 
   
   
   <!--CSS-->
-  <link rel="stylesheet" href="chatstyle.css">
+  <link rel="stylesheet" href="/chat/chatstyle.css">
   
   <!--temporary styles
   <style> 

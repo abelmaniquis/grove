@@ -88,13 +88,11 @@ module.exports = function() {
         if (!user) {
           return done(null, false);
         }
-        
-        //If password is incorrect, redirect to failure
-        if (!user.validPassword(password)) {
+        //If password is incorrect, redirect to failur
+        else if (!user.validPassword(password)) {
           console.log('wrong password')
           return done(null,false);
-        }
-        if (user.validPassword(password)){
+        }else if (user.validPassword(password)){
           return done(null, user);
         }
       });
