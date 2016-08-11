@@ -12,9 +12,6 @@ var io = require('socket.io')(server);
 
 var configDB = require('./config/database.js');
 
-//Chatroom configuration====================================================
-//require('./config/chatroom');
-
 //Database configuration====================================================
 mongoose.connect(configDB.url);
 //set up express application

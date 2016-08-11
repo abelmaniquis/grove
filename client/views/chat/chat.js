@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    //var socket = io();
+    var socket = io();
     var input = $(".inputMessage");
     var chatPage = $('#chatPage');
     var messages = $('.messages');
@@ -13,6 +13,7 @@ $(document).ready(function() {
         }
         var message = input.val();
         addMessage("USERNAME: " + message);
+        console.log(message);
         input.val('');
     })
     

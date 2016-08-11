@@ -7,11 +7,13 @@ var path = require('path');
 var passport = require('passport');
 
 module.exports = function(app){
-app.use(express.static('client'));
+app.use(express.static(path.join(__dirname,'../../client')));
+app.use('/libs',express.static(path.join(__dirname,'../../node_modules')));
 app.use(morgan('dev')); //log requests to the console.
 app.use(bodyParser.urlencoded({
     extended: false
-}))
+}));
+
 app.use(bodyParser.json()); //Get information from html forms
 //Required for passport
 //I have been following this tutorial: https://scotch.io/tutorials/easy-node-authentication-setup-and-local

@@ -1,65 +1,29 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <title>Chatroom</title>
   <meta charset="utf-8">
   <!--JS-->
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="libs/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+  <script src="views/chat/chat.js"></script>
 
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/chat/chat.js"></script> 
-  
-  
   <!--CSS-->
-  <link rel="stylesheet" href="/chat/chatstyle.css">
-  
-  <!--temporary styles
-  <style> 
-    *{
-  box-sizing: border-box;
-}
-
-html{
-  font-weight:200;
-}
-
-html,body{
-  height:100%;
-  margin: 0;
-  padding: 0;
-}
-
-ul{
-  list-style-type:none;
-}
-
-.inputMessage{
-  border:10px solid #000;
-  bottom:0;
-  height: 70px;
-  left:0;
-  outline:none;
-  padding-left:10px;
-  position:absolute;
-  right:0;
-  width:100%;
-}  
-</style>
--->
-
+  <link rel="stylesheet" href="views/chat/chatstyle.css">
 </head>
+
 <body>
-  <ul class ="chat">
+  <ul class="chat">
     <li class="chatPage">
       <div class="chatArea">
         <ul class="messages"></ul>
       </div>
-      
-      <input class="inputMessage" placeholder="Type here..."/>
+
+      <input class="inputMessage" placeholder="Type here..." />
     </li>
   </ul>
-  
-  
-</body>
-</html>
 
+</body>
+
+</html>

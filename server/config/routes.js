@@ -62,10 +62,6 @@ use route middlware to verify this (isLoggedIn function)
     res.status(200).sendFile(path.join(clientPath, 'profile.html'));
   });
 
-/*-------------------------------------------
-INFORMATION:
-this is to check to see if the user object has been passed
-----------------------------------------------*/
  
 /*--------------------------------------------
 CHAT
@@ -87,10 +83,6 @@ need to send css and javascript to the chatroom
   //app.use("/chat", express.static(__dirname + '/chat'));
   
   //How do I send the css and script?
-var path = require('path');
-  console.log("DIRNAME: ");
-  console.log(__dirname);
-  app.use('/chat',express.static(path.join(__dirname,'/../..client/views/chat')));
   app.get('/chat',isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath,'/chat/chat.html'));
   });
@@ -129,5 +121,3 @@ function isLoggedIn(req,res,next){
   
   
 }
-
-//Look up chrome ARC
