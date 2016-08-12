@@ -4,8 +4,11 @@ $(document).ready(function() {
     var chatPage = $('#chatPage');
     var messages = $('.messages');
     
+    var myUsername = "myUsername";
+    
+    
     var addMessage = function(message){
-      messages.append('<ul>' + message + '</ul>');  
+      messages.append('<ul>' + myUsername + message + '</ul>');  
     };
     
     console.log(socket);
@@ -15,7 +18,7 @@ $(document).ready(function() {
             return;
         }
         var message = input.val();
-        addMessage("USERNAME: " + message);
+        addMessage(message);
             socket.emit('message',message);
         input.val('');
     });

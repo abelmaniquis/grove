@@ -100,7 +100,7 @@ LOGOUT
 FAILURE TO SIGN IN
 */
   app.get('/failure',function(req,res){
-   res.send("Access Denied");
+   res.send("Incorrect Username or Password");
   });
   
 };

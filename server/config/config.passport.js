@@ -50,16 +50,11 @@ module.exports = function() {
               return done(err);
             }else{
               console.log('User saved');
+              return done(user);
             }
           });
         }
       });
-      /*
-      Method:
-      GET username and password from user
-      check to see if username exists.
-      If it exists inform the user that they cannot use that username.
-      */
     }));
     
     
