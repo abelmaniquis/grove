@@ -26,17 +26,21 @@ require('./config/routes.js')(app); //load routes and a fully configured passpor
 //=================================================
  
 //Decouple this from the server after it's finished
+//////////////////////////////////////////////////////////////////////////////
+
+
 var socket_io = require('socket.io');
 var http = require('http');
 var path = require('path');
 var io = socket_io(server);
+
 io.on('connection',function(socket){
   console.log('Socket.io is now connected');
   
   socket.on('message',function(message){
     console.log(message);
-  });
-  
+    socket.broadcast.emit('message',message);
+  })
 });
 
 

@@ -78,10 +78,13 @@ need to send css and javascript to the chatroom
   //serve chat.js
   //serve chat.css
   //
+  
+  
   require('./config.chat.js');
   app.get('/chat',isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath,'/chat/chat.html'));
   });
+  
   
   //Once the app GETS chat. socket.io should connect. and then should do the following:
 
