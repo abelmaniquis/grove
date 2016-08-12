@@ -79,10 +79,6 @@ need to send css and javascript to the chatroom
   //serve chat.css
   //
   require('./config.chat.js');
-  //remember, this is the client path:  __dirname, '../../client/views'
-  //app.use("/chat", express.static(__dirname + '/chat'));
-  
-  //How do I send the css and script?
   app.get('/chat',isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath,'/chat/chat.html'));
   });

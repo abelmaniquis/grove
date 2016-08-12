@@ -7,6 +7,8 @@ $(document).ready(function() {
       messages.append('<ul>' + message + '</ul>');  
     };
     
+    console.log(socket);
+    
     input.on('keydown',function(event){
         if (event.keyCode !=13){
             return;
