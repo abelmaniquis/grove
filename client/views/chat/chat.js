@@ -11,7 +11,6 @@ $(document).ready(function() {
     $.getJSON("profile/mine", function(data) {
     // Make sure the data contains the username as expected before using it
     if (data.hasOwnProperty('username')) {
-        console.log(data.username);
         myUsername = (data.username.local.username);
     }else{
         myUsername = "aUsername";
@@ -19,7 +18,7 @@ $(document).ready(function() {
     });
     
     var addMessage = function(message){
-      messages.append('<ul>' + myUsername +": " + message + '</ul>');  
+      messages.append('<ul>' + message + '</ul>');  
     };
     
     input.on('keydown',function(event){
@@ -29,7 +28,7 @@ $(document).ready(function() {
         
         var message = input.val();
         addMessage(message);
-            socket.emit('message',message);
+            socket.emit('message', myUsername + ": " + message);
         input.val('');
     });
     

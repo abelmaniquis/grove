@@ -4,8 +4,8 @@ html{
 }
 
 body{
-  padding-top:80px;
-  background-color:#0080ff;
+  padding-top:10em;
+  background-image:url('images/grove_pic_1.JPG');
   display:block;
 }
 .container{
