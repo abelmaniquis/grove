@@ -39,12 +39,14 @@ module.exports = function() {
         if(err){
           return done(err);
         }else if(user){
-          console.log("The User already exists");
+         console.log("This user already exists");
+          //return done(null,false);
         }else{
           var newUser = new User({
             'local.username': username,
             'local.password': password
         });
+          console.log(newUser);
           
           newUser.save(function(){
             if(err){
@@ -52,6 +54,7 @@ module.exports = function() {
             }
             console.log("new user created");
           });
+          //return done(null,newUser);
         }
         
       });

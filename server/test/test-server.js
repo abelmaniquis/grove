@@ -9,8 +9,7 @@ var storage = server.storage;
 chai.use(chaiHttp);
 
 describe('grove',function(){
-  it('should be able to be tested')
-  it('should return status(200)',function(done){
+  it('should open the profile on login',function(done){
     chai.request(app)
     .get('/')
     .end(function(res){
@@ -19,9 +18,11 @@ describe('grove',function(){
   });
   it('should be able to access the login page',function(done){
     chai.request(app)
-    .get('login')
+    .get('/login')
     .end(function(res){
       res.should.have.status(200);
-    })
+    });
+  it('should be able to access the signup page',function(done){
+  });
   })
 });

@@ -50,8 +50,10 @@ SIGNUP PAGE
   //process the signup form
   app.post('/signup',passport.authenticate('local-signup',{
     successRedirect : '/profile', //redirect to profile page
-    failureRedirect: '/failure' //redirect back to signup page
-  }));
+    failureRedirect: '/failure' //redirect to failure page
+  }),function(req,res){
+    console.log(req.body);
+  });
   //Process the login form
 /*-------------------------------------
 PROFILE
@@ -61,33 +63,23 @@ use route middlware to verify this (isLoggedIn function)
   app.get("/profile",isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath, 'profile.html'));
   });
-
+  
+  app.get('/profile/mine',isLoggedIn,function(req,res){
+    res.json({
+      username:req.user
+    });
+  });
+ 
  
 /*--------------------------------------------
 CHAT
 ---------------------------------------------*/
-
-/*
-need to send css and javascript to the chatroom
-*/ 
-
-//Load chatroom
- // var express = require('express');
-  
-    
-  //serve chat.js
-  //serve chat.css
-  //
-  
   
   require('./config.chat.js');
   app.get('/chat',isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath,'/chat/chat.html'));
   });
   
-  
-  //Once the app GETS chat. socket.io should connect. and then should do the following:
-
 /*--------------------------------
 LOGOUT
 ---------------------------------*/

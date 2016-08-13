@@ -35,9 +35,12 @@ var addedUser = false;
 var numUsers = 0;
 
 io.on('connection',function(socket){
+  
+  numUsers ++;
+  console.log(numUsers);
   var User = require('./api/user/user.model.js');
   
-  var username = "Temp Username"
+  var username = "Their Username"
   
   socket.on('message',function(chatInput){
     socket.broadcast.emit('message',username + ": " + chatInput);
