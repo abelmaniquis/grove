@@ -16,12 +16,14 @@ var configDB = require('./config/database.js');
 
 //Database configuration====================================================
 mongoose.connect(configDB.url);
-//set up express application
 
+
+//set up express application
 require('./config/config.express')(app);
 
 //Passing passport for configuration
 require('./config/config.passport')(); //pass passport for configuration
+
 
 //Routing===========================================
 require('./config/routes.js')(app); //load routes and a fully configured passport
@@ -29,8 +31,6 @@ require('./config/routes.js')(app); //load routes and a fully configured passpor
  
 //Decouple this from the server after it's finished
 //////////////////////////////////////////////////////////////////////////////
-
-//var User = require('./api/user/user.model.js');
 var addedUser = false;
 var numUsers = 0;
 
@@ -38,13 +38,11 @@ io.on('connection',function(socket){
   
   numUsers ++;
   console.log(numUsers);
-  var User = require('./api/user/user.model.js');
-  
-  var username = "Their Username"
   
   socket.on('message',function(chatInput){
-    socket.broadcast.emit('message',username + ": " + chatInput);
-  })
+    console.log(socket);
+    socket.broadcast.emit('message', chatInput);
+  });
   
   socket.on('add user',function(){
     socket.broadcast.emit('message', "A new user has joined the room");
@@ -52,13 +50,7 @@ io.on('connection',function(socket){
   
 });
 
-io.on('disconnect',function(socket){
-  socket.emit.broadcast("message","A user has disconnected");
-  console.log("A user has disconnected");
-});
-
 //launch===========================================
 server.listen(port,function(){
   console.log('Listening on port ' + port);
 });
-

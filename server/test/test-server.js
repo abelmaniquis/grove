@@ -23,6 +23,11 @@ describe('grove',function(){
       res.should.have.status(200);
     });
   it('should be able to access the signup page',function(done){
+    chai.request(app)
+    .get('/signup')
+    .end(function(res){
+      res.should.have.status(200);
+    });
   });
   })
 });
