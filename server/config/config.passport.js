@@ -44,16 +44,16 @@ module.exports = function() {
           var newUser = new User({
             'local.username': username,
             'local.password': password
-          });
-          newUser.save(function(err){
+        });
+          
+          newUser.save(function(){
             if(err){
-              return done(err);
-            }else{
-              console.log('User saved');
-              return done(user);
+              throw err;
             }
+            console.log("new user created");
           });
         }
+        
       });
     }));
     

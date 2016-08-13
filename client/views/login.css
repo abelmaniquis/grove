@@ -1,8 +1,10 @@
 html{
-  font-family: Helvetica,Arial,sans-serif
+  font-family: Helvetica,Arial,sans-serif;
+  color:white;
 }
 
 body{
+  padding-top:80px;
   background-color:#0080ff;
   display:block;
 }
@@ -10,4 +12,12 @@ body{
   margin-top:10em;
   text-align:center;
   border-color:black;
+}
+
+.button-type{
+  color:white;
+  font-size:16px;
+  border-style:solid;
+  border-radius:4px;
+  background-color:#0080ff;
 }

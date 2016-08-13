@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Signup</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href = "views/login.css">
 </head>
 <body>
     <div class="container">
         <h1>Signup</h1>
-    </div>
     <form action="/signup" method="post">
         <div class="user-input">
             <label>Username</label>
@@ -17,12 +18,14 @@
             <label>Password</label>
              <input type="password" name="password" class="type-here">
         </div>
+        
        <div class="button">
-           <button>Signup</button>
+           <input class = "button-type" type="submit" value="Submit">
        </div>
        <div class="link">
            <p>log in: <a href="/login">here</a></p>
        </div>
     </form>
+    </div>
 </body>
 </html>

@@ -49,7 +49,7 @@ SIGNUP PAGE
 
   //process the signup form
   app.post('/signup',passport.authenticate('local-signup',{
-    successRedirect : '/profile', //redirect to chat page
+    successRedirect : '/profile', //redirect to profile page
     failureRedirect: '/failure' //redirect back to signup page
   }));
   //Process the login form
