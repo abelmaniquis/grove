@@ -26,21 +26,21 @@ require('./config/config.passport')(); //pass passport for configuration
 
 
 //Routing===========================================
-require('./config/routes.js')(app); //load routes and a fully configured passport
+require('./config/config.routes.js')(app); //load routes and a fully configured passport
 //=================================================
  
 //Decouple this from the server after it's finished
 //////////////////////////////////////////////////////////////////////////////
-var addedUser = false;
+//require('./config/config.chat.js')(app);
+
+
 var numUsers = 0;
 
 io.on('connection',function(socket){
   
   numUsers ++;
-  console.log(numUsers);
   
   socket.on('message',function(chatInput){
-    console.log(socket);
     socket.broadcast.emit('message', chatInput);
   });
   
@@ -49,6 +49,8 @@ io.on('connection',function(socket){
   });
   
 });
+
+
 
 //launch===========================================
 server.listen(port,function(){

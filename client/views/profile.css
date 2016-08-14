@@ -4,6 +4,10 @@ html{
 }
 body{
   text-align:center;
-  
   background-image:url("images/grove_pic_1.JPG");
+}
+
+.container{
+  margin-top:20em;
+  text-align:center;
 }

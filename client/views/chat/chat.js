@@ -3,23 +3,23 @@ $(document).ready(function() {
     
     var socket = io();
     var input = $(".inputMessage");
-    var chatPage = $('#chatPage');
     var messages = $('.messages');
+    var myUsername = "";
     
-    var myUsername = "myUsername";
-    
-    $.getJSON("profile/mine", function(data) {
+    $.getJSON("profile/mine", function(data){
     // Make sure the data contains the username as expected before using it
-    if (data.hasOwnProperty('username')) {
-        myUsername = (data.username.local.username);
-    }else{
-        myUsername = "aUsername";
-    }
+        if (data.hasOwnProperty('username')) {
+            myUsername = (data.username.local.username);
+        }else{
+            myUsername = "aUsername";
+        }
+        socket.emit('added user',myUsername);
     });
     
-    var addMessage = function(message){
+    function addMessage(message){
       messages.append('<ul>' + message + '</ul>');  
     };
+    
     
     input.on('keydown',function(event){
         if (event.keyCode !=13){
@@ -27,10 +27,13 @@ $(document).ready(function() {
         }
         
         var message = input.val();
+        
         addMessage(message);
             socket.emit('message', myUsername + ": " + message);
         input.val('');
     });
+    
+    
     
     socket.on('message',addMessage);
 });
