@@ -40,34 +40,33 @@ module.exports = function() {
   passport.use('local-signup', new LocalStrategy({
       usernameField: 'username',
       passwordField: 'password',
-      passReqToCallback: true //allows us to pass back the entire request to the callback
+      passReqToCallback: true //req will be passed as the first argument to verify callback
     },
-    function(req,res, done) {
+    function(req,res,done){
       var username = req.body.username;
       var password = req.body.password;
       
       User.findOne({
         'local.username':username
-      },function(err,user){
+      },
+      function(err,user){
         if(err){
           return done(err);
-        }else if(user){
-         console.log("This user already exists");
-          //return done(null,false);
-        }else{
+        }
+        else if(user){
+        }
+        else{
           var newUser = new User({
             'local.username': username,
             'local.password': password
         });
           console.log(newUser);
-          
           newUser.save(function(){
             if(err){
               throw err;
             }
             console.log("new user created");
           });
-          //return done(null,newUser);
         }
         
       });
@@ -83,9 +82,6 @@ module.exports = function() {
       passReqtoCallback: true //Allows us to pass back the entire request to the callback
     },
     function(username, password, done) { //callback with email and password from our form
-
-      console.log('here is the username', username);
-      console.log('here is the password', password);
       //find a user whose email is the same as the forms email
       // we are checking to see if the user trying to login already exists
       User.findOne({
@@ -95,7 +91,7 @@ module.exports = function() {
         if (err){
           return done(err);
         }
-        //if no user is found, redirect to  failure
+        //if no user is found
         if (!user) {
           return done(null, false);
         }
@@ -104,6 +100,9 @@ module.exports = function() {
           console.log('wrong password')
           return done(null,false);
         }else if (user.validPassword(password)){
+          console.log(username);
+          console.log(password);
+          console.log(done);
           return done(null, user);
         }
       });
@@ -111,3 +110,8 @@ module.exports = function() {
   console.log("END OF PASSPORT FUNCTION");
 };
 
+
+/*
+The done callback supplies passport with the authenticated user.
+
+*/
