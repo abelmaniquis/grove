@@ -76,9 +76,9 @@ SIGNUP PAGE
 //FAILURE TO SIGN IN
 
   app.get('/failure',function(req,res){
-   res.send("Incorrect Username or Password");
-  });
-};
+     res.send("Incorrect Username or Password");
+    });
+  };
 
 
 /*------------------------------------------
