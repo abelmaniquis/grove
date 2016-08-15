@@ -14,7 +14,25 @@
     <p> Welcome </p>
   </div>
   
-  <p><a href="/chat">Click to go to chat</a></p>
+  <div class="rooms">
+      <p><a href="/chat">Click to go to chat</a></p>
+  </div>
+  
+  <div class = "user-edit">
+    <form action="/" method="post">
+      <div class="user-input">
+        <label>Change Username</label>
+        <input type="text" name="newUsername" class="type-here">
+        <input class="button-type" type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+  <div class= "/logout">
+    <form action="/" method="get">
+      <input class="button-type" type="submit" value="Log out">
+    </form>
+  </div>
+
 </div>
 </body>
 </html>
