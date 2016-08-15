@@ -36,11 +36,8 @@ function addMessage(message){
 };
     
 function playSound(){
-    var audio = new Audio('arpeggio.mp3');
+    var audio = new Audio('views/chat/sounds/arpeggio.mp3');
     audio.play();
-    /*$('#notify')[0].volume = 0.5;
-    $('#notify')[0].load();
-    $('#notify')[0].play();*/
 };
     
 });

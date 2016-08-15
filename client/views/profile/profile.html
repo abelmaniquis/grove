@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href = "views/profile.css">
+  <link rel="stylesheet" href = "views/profile/profile.css">
+   
+   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+   <script src="views/profile/profile.js"></script>
+   
   <title>Document</title>
 </head>
 <body>
@@ -18,15 +22,6 @@
       <p><a href="/chat">Click to go to chat</a></p>
   </div>
   
-  <div class = "user-edit">
-    <form action="/profile/mine/change" method="get">
-      <div class="user-input">
-        <label>Change Username</label>
-        <input type="text" name="newUsername" class="type-here">
-        <input class="button-type" type="submit" value="Submit">
-      </div>
-    </form>
-  </div>
   
   <div class= "logout">
     <form action="/logout" method="get">

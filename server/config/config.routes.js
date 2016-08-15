@@ -47,7 +47,7 @@ SIGNUP PAGE
   
 //PROFILE
   app.get("/profile",isLoggedIn,function(req,res){
-    res.status(200).sendFile(path.join(clientPath, 'profile.html'));
+    res.status(200).sendFile(path.join(clientPath, '/profile/profile.html'));
   });
   
   app.get('/profile/mine',isLoggedIn,function(req,res){
