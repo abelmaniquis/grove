@@ -21,10 +21,10 @@ $.getJSON("profile/mine", function(data){
             return;
         }
         
-        var message = input.val();
+        var message = myUsername + ": " + input.val();
         
         addMessage(message);
-            socket.emit('message', myUsername + ": " + message);
+            socket.emit('message',message);
         input.val('');
     });
     socket.on('message',addMessage);

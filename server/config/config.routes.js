@@ -56,7 +56,6 @@ SIGNUP PAGE
     });
   });
  
- 
 
 //CHAT
   
@@ -72,6 +71,7 @@ SIGNUP PAGE
     req.logout();
     res.redirect('/');
   });
+
 
 //FAILURE TO SIGN IN
 

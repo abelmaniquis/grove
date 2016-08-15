@@ -7,7 +7,9 @@ var bcrypt = require('bcrypt');
 var userSchema = mongoose.Schema({
   local : {
     username: String,
-    password: String
+    password: String,
+    name: String,
+    surname: String
   }
 });
 
@@ -18,8 +20,6 @@ userSchema.path('local.username').validate(function(name){
 userSchema.path('local.password').validate(function(password){
   return password.length >= 4;
 },'Password must contain at least 4 characters')
-
-
 
 //Generate a hash for the password
 
