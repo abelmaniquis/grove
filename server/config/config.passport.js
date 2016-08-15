@@ -42,9 +42,7 @@ module.exports = function() {
       passwordField: 'password',
       passReqToCallback: true //req will be passed as the first argument to verify callback
     },
-    function(req,res,done){
-      var username = req.body.username;
-      var password = req.body.password;
+    function(req,username, password,done){
       
       User.findOne({
         'local.username':username
@@ -54,19 +52,23 @@ module.exports = function() {
           return done(err);
         }
         else if(user){
-        }
-        else{
-          var newUser = new User({
-            'local.username': username,
-            'local.password': password
-        });
-          console.log(newUser);
-          newUser.save(function(){
+          //if user exists, notify the user
+          console.log('This username already exists');
+        }else{
+          
+          User.create({
+            'local.username' : username,
+            'local.password' : password
+          }, function(err,createdUser){
             if(err){
-              throw err;
+              done(err,null);
+            }else{
+              done(null, createdUser);
             }
-            console.log("new user created");
-          });
+          }
+          
+          );
+          
         }
         
       });
@@ -95,14 +97,10 @@ module.exports = function() {
         if (!user) {
           return done(null, false);
         }
-        //If password is incorrect, redirect to failur
+        //If password is incorrect, redirect to failure
         else if (!user.validPassword(password)) {
-          console.log('wrong password')
           return done(null,false);
         }else if (user.validPassword(password)){
-          console.log(username);
-          console.log(password);
-          console.log(done);
           return done(null, user);
         }
       });

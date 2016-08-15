@@ -1,6 +1,4 @@
 //app/routes.js
-/*var express = require('express');
-var app = express;*/
 var passport = require('passport');
 
 module.exports =function(app){ //don't need to pass everything
@@ -23,9 +21,7 @@ PROFILE PAGE
 /*--------------------
 LOGIN PAGE
 ---------------------*/
-//show the login form
   app.get("/login",function(req,res){
-    //need to send user information to this page
     res.status(200).sendFile(path.join(clientPath, 'login.html'));
   });
   
@@ -35,31 +31,21 @@ LOGIN PAGE
   }), function(req, res){
     console.log('here it is', req.body);
   });
-
 /*------------------------------
 SIGNUP PAGE
 -------------------------------*/
-
   app.get("/signup",function(req,res){
-    //need to send user information to the signup page
     res.status(200).sendFile(path.join(clientPath, 'signup.html'));
   });
 
-//Process the signup form
-
-  //process the signup form
   app.post('/signup',passport.authenticate('local-signup',{
     successRedirect : '/profile', //redirect to profile page
     failureRedirect: '/failure' //redirect to failure page
   }),function(req,res){
     console.log(req.body);
   });
-  //Process the login form
-/*-------------------------------------
-PROFILE
-Only accessible to registered users
-use route middlware to verify this (isLoggedIn function)
--------------------------------------*/
+  
+//PROFILE
   app.get("/profile",isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath, 'profile.html'));
   });
@@ -71,32 +57,28 @@ use route middlware to verify this (isLoggedIn function)
   });
  
  
-/*--------------------------------------------
-CHAT
----------------------------------------------*/
+
+//CHAT
   
   require('./config.chat.js');
   app.get('/chat',isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath,'/chat/chat.html'));
   });
   
-/*--------------------------------
-LOGOUT
----------------------------------*/
+
+//LOGOUT
+
   app.get('/logout',function(req,res){
     req.logout();
     res.redirect('/');
   });
 
-/*
-FAILURE TO SIGN IN
-*/
+//FAILURE TO SIGN IN
+
   app.get('/failure',function(req,res){
    res.send("Incorrect Username or Password");
   });
-  
 };
-
 
 
 /*------------------------------------------
