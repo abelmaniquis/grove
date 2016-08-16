@@ -1,12 +1,13 @@
 //app/routes.js
 var passport = require('passport');
+var io = require('socket.io');
+var http = require('http');
+var path = require('path');
+var express = require('express');
 
 module.exports =function(app){
-  var io = require('socket.io');
-  var http = require('http');
-  var path = require('path');
-  var express = require('express');
-  app.use(express.static('client/views'));
+
+app.use(express.static('client/views'));
   
 app.set('client', path.join(__dirname, '../../client/views'));
 var clientPath = app.get('client');
