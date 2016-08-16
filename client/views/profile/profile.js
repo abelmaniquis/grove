@@ -5,6 +5,9 @@ $(document).ready(function(){
     if(data.hasOwnProperty('name')){
       displayName = (data.username.local.name);
     }
+    else{
+      console.log("Does not have this data");
+    };
   });
   console.log(displayName);
 });

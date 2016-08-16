@@ -1,7 +1,7 @@
 //app/routes.js
 var passport = require('passport');
 
-module.exports =function(app){ //don't need to pass everything
+module.exports =function(app){
   var io = require('socket.io');
   var http = require('http');
   var path = require('path');
@@ -11,16 +11,16 @@ module.exports =function(app){ //don't need to pass everything
 app.set('client', path.join(__dirname, '../../client/views'));
 var clientPath = app.get('client');
 
-/*-------------------
-PROFILE PAGE
---------------------*/
+
+//PROFILE PAGE
+
   app.get("/",function(req,res){
     res.status(200).sendFile(path.join(clientPath, 'index.html'));
   });
 
-/*--------------------
-LOGIN PAGE
----------------------*/
+
+//LOGIN PAGE
+
   app.get("/login",function(req,res){
     res.status(200).sendFile(path.join(clientPath, 'login.html'));
   });
@@ -29,11 +29,12 @@ LOGIN PAGE
     successRedirect : '/profile',
     failureRedirect : '/failure'
   }), function(req, res){
-    console.log('here it is', req.body);
+    console.log(req.body);
   });
-/*------------------------------
-SIGNUP PAGE
--------------------------------*/
+  
+  
+//SIGNUP PAGE
+
   app.get("/signup",function(req,res){
     res.status(200).sendFile(path.join(clientPath, 'signup.html'));
   });
@@ -81,9 +82,9 @@ SIGNUP PAGE
   };
 
 
-/*------------------------------------------
-CHECK IF USER IS LOGGED IN
---------------------------------------------*/
+
+//CHECK IF USER IS LOGGED IN
+
 
 function isLoggedIn(req,res,next){
   if(req.isAuthenticated())
