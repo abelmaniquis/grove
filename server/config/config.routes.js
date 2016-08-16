@@ -18,7 +18,6 @@ var clientPath = app.get('client');
     res.status(200).sendFile(path.join(clientPath, 'index.html'));
   });
 
-
 //LOGIN PAGE
 
   app.get("/login",function(req,res){
