@@ -21,7 +21,7 @@ $.getJSON("profile/mine", function(data){
             return;
         }
         
-        var message = myUsername + ": " + input.val();
+        var message = myUsername + ":     " + input.val();
         
         addMessage(message);
             socket.emit('message',message);

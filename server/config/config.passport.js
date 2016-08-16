@@ -58,7 +58,7 @@ module.exports = function() {
           
           User.create({
             'local.username' : username,
-            'local.password' : password
+            'local.password' : password,
           }, function(err,createdUser){
             if(err){
               done(err,null);
@@ -70,7 +70,6 @@ module.exports = function() {
           );
           
         }
-        
       });
     }));
     
