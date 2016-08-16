@@ -9,25 +9,7 @@ var storage = server.storage;
 chai.use(chaiHttp);
 
 describe('grove',function(){
-  it('should open the profile on login',function(done){
-    chai.request(app)
-    .get('/')
-    .end(function(res){
-      res.should.have.status(200);
-    });
-  });
-  it('should be able to access the login page',function(done){
-    chai.request(app)
-    .get('/login')
-    .end(function(res){
-      res.should.have.status(200);
-    });
-  it('should be able to access the signup page',function(done){
-    chai.request(app)
-    .get('/signup')
-    .end(function(res){
-      res.should.have.status(200);
-    });
-  });
-  })
+  it('should be able to access the login page');
+  it('should be able to access the signup page');
+  it('should be able to access the chat room');
 });
