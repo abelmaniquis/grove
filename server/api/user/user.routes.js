@@ -4,22 +4,22 @@ var io = require('socket.io');
 var http = require('http');
 var path = require('path');
 var express = require('express');
+var User = require('./user.model.js');
 
 module.exports =function(app){
 
-app.use(express.static('client/views'));
+  app.use(express.static('client/views'));
   
-app.set('client', path.join(__dirname, '../../client/views'));
-var clientPath = app.get('client');
+  app.set('client', path.join(__dirname, '../../../client/views'));
+  var clientPath = app.get('client');
 
-
-//PROFILE PAGE
+  //Home Page
 
   app.get("/",function(req,res){
     res.status(200).sendFile(path.join(clientPath, 'index.html'));
   });
 
-//LOGIN PAGE
+  //LOGIN PAGE
 
   app.get("/login",function(req,res){
     res.status(200).sendFile(path.join(clientPath, 'login.html'));
@@ -51,6 +51,20 @@ var clientPath = app.get('client');
     res.status(200).sendFile(path.join(clientPath, '/profile/profile.html'));
   });
   
+  app.put('/profile',isLoggedIn,function(req,res){
+    User.findByIdAndUpdate(req.user._id,{
+      'local.name': req.body.name
+    },function(error,user){
+      if(error,user){
+        if(error){
+          console.log(error);
+        }else{
+          res.status(201).json(user);
+        }
+      }
+    });
+  })
+  
   app.get('/profile/mine',isLoggedIn,function(req,res){
     res.json({
       username:req.user
@@ -60,7 +74,7 @@ var clientPath = app.get('client');
 
 //CHAT
   
-  require('./config.chat.js');
+  require('../../config/config.chat.js');
   app.get('/chat',isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath,'/chat/chat.html'));
   });
@@ -84,7 +98,6 @@ var clientPath = app.get('client');
 
 
 //CHECK IF USER IS LOGGED IN
-
 
 function isLoggedIn(req,res,next){
   if(req.isAuthenticated())
