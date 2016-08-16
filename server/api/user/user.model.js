@@ -10,14 +10,8 @@ var userSchema = mongoose.Schema({
   }
 });
 
-userSchema.path('local.username').validate(function(name){
-  return name.length >= 4;
-},'Username must contain at least 4 characters.');
 
-userSchema.path('local.password').validate(function(password){
-  return password.length >= 4;
-},'Password must contain at least 4 characters')
-
+require('./user.validation.js')(userSchema);
 
 //Generate a hash for the password
 
@@ -30,5 +24,6 @@ userSchema.methods.validPassword = function(password) {
   };
   
 };
+
 
 module.exports = mongoose.model('User', userSchema);
