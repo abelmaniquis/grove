@@ -3,9 +3,6 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var should = chai.should();
 
-
-
-
 chai.use(chaiHttp);
   it('should be able to access the login page',function(done){
     chai.request(app)
@@ -25,5 +22,14 @@ chai.use(chaiHttp);
       done();
     });
   });
-  it('should be able to access the chat room');
-  it('should save a user on get');
+  it('should accept a successful login',function(done){
+    chai.request(app)
+    .post('/login')
+    .send({'name':'carl',
+      'password':'abcde'
+    }).end(function(err,res){
+      should.equal(err,null);
+      res.should.have.status(200);
+      done();
+    })
+  })

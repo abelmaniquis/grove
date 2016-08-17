@@ -40,8 +40,8 @@ module.exports =function(app){
   });
 
   app.post('/signup',passport.authenticate('local-signup',{
-    successRedirect : '/profile', //redirect to profile page
-    failureRedirect: '/failure' //redirect to failure page
+    successRedirect : '/profile', 
+    failureRedirect: '/failure' 
   }),function(req,res){
     console.log(req.body);
   });
@@ -55,13 +55,11 @@ module.exports =function(app){
     User.findByIdAndUpdate(req.user._id,{
       'local.name': req.body.name
     },function(error,user){
-      if(error,user){
         if(error){
           console.log(error);
         }else{
           res.status(201).json(user);
         }
-      }
     });
   })
   
