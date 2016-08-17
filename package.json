@@ -1,6 +1,9 @@
 {
   "name": "grove",
   "version": "1.0.0",
+  "engines":{
+    "node": "4.1.1"
+  }
   "description": "Project:",
   "main": "routes.js",
   "scripts": {
@@ -26,5 +29,13 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abelmaniquis/grove.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abelmaniquis/grove/issues"
+  },
+  "homepage": "https://github.com/abelmaniquis/grove#readme"
 }

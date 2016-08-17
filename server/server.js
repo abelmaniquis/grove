@@ -7,6 +7,10 @@ var socket_io = require('socket.io');
 var http = require('http');
 var path = require('path');
 var io = socket_io(server);
+
+exports.app = app;
+exports.server = server;
+
 var configDB = require('./config/database.js');
 
 mongoose.connect(configDB.url);

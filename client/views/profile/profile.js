@@ -1,13 +1,29 @@
-$(document).ready(function(){
-  
-  var displayName = "";
-  $.getJSON("profile/mine",function(data){
-    if(data.hasOwnProperty('name')){
-      displayName = (data.username.local.name);
-    }
-    else{
-      console.log("Does not have this data");
-    };
-  });
-  console.log(displayName);
+$(document).ready(function() {
+
+    $.getJSON("profile/mine", function(data) {
+        console.log(data);
+        if (data.user.local.hasOwnProperty('name')) {
+            $('#name').text(data.user.local.name);
+        }
+    });
+
+    $('#update').submit(function(event) {
+        event.preventDefault();
+
+        var field = $('#userUpdatefield').val();
+
+
+        $.ajax({
+            url: '/profile',
+            method: 'PUT',
+            data: {
+                name: field
+            }
+        }).done(function(user) {
+            console.log(user);
+        }).fail(function(error) {
+            console.log(error);
+        });
+    });
+
 });
