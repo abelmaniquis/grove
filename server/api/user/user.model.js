@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt');
 
 
 var userSchema = mongoose.Schema({
-  local : {
+  local: {
     username: String,
     password: String,
     name: String
@@ -18,11 +18,11 @@ require('./user.validation.js')(userSchema);
 userSchema.methods.validPassword = function(password) {
   var salt = bcrypt.genSaltSync(8);
   var hash = bcrypt.hashSync(password, salt);
-  
-  if(bcrypt.compareSync(this.local.password, hash)){
+
+  if (bcrypt.compareSync(this.local.password, hash)) {
     return true;
   };
-  
+
 };
 
 

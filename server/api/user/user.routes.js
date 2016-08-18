@@ -29,7 +29,8 @@ module.exports =function(app){
     successRedirect : '/profile',
     failureRedirect : '/failure'
   }), function(req, res){
-    console.log(req.body);
+    req.status(200);
+   // console.log(req.body);
   });
   
   
