@@ -13,7 +13,7 @@ module.exports =function(app){
   app.set('client', path.join(__dirname, '../../../client/views'));
   var clientPath = app.get('client');
 
-  //Home Page
+  //HOME PAGE
 
   app.get("/",function(req,res){
     res.status(200).sendFile(path.join(clientPath, 'index.html'));
@@ -92,7 +92,7 @@ module.exports =function(app){
      res.send("Incorrect Username or Password");
     });
   };
-
+//Delete User
 
 
 //CHECK IF USER IS LOGGED IN

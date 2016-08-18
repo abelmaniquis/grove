@@ -23,7 +23,6 @@ require('./api/user/user.routes.js')(app);
 
 require('./config/config.chat.js')(io);
 
-
 //launch===========================================
 server.listen(port,function(){
   console.log('Listening on port ' + port);
