@@ -30,12 +30,26 @@
   
   <div class="rooms">
       <p><a href="/chat">Click to go to chat</a></p>
+      <p><a href="/logout">Or Click to log out</a></p>
   </div>
   
   
   <div class= "logout">
     <form action="/logout" method="get">
-      <input class="button-type" type="submit" value="Log out">
+      <input type="submit" value="Log out">
+    </form>
+  </div>
+  
+  <div class="test">
+    <form action="http://google.com">
+    <input type="submit" value="Go to Google" />
+    </form>
+  </div>
+  
+  <div class="delete">
+  <form action="/delete_user" method="/delete_user">
+        <p>Or would you like to delete your account?</p>
+        <input class="button-type" type="submit" value="delete">
     </form>
   </div>
 

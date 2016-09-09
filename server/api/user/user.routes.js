@@ -90,10 +90,16 @@ module.exports =function(app){
 //FAILURE TO SIGN IN
 
   app.get('/failure',function(req,res){
-     res.send("Incorrect Username or Password");
-    });
-  };
-//Delete User
+    res.send("Incorrect Username or Password");
+  });
+  
+  app.delete('/delete_user',function(req,res){
+    res.send("This will delete a user");
+  })
+    
+};
+
+  
 
 
 //CHECK IF USER IS LOGGED IN

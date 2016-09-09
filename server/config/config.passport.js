@@ -37,8 +37,7 @@ module.exports = function() {
       passwordField: 'password',
       passReqToCallback: true 
     },
-    function(req,username, password,done){
-      
+    function(req,username,password,done){
       User.findOne({
         'local.username':username
       },
@@ -90,6 +89,9 @@ module.exports = function() {
           return done(null, user);
         }
       });
-    }));
+  }));
+    
+//DELETE USER
+
   console.log("END OF PASSPORT FUNCTION");
 };

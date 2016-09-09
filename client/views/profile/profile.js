@@ -21,6 +21,10 @@ $(document).ready(function() {
             console.log(user);
         }).fail(function(error) {
             console.log(error);
+            $.ajax({
+                url:'/failure',
+                method:'GET'
+            })
         });
     });
 
