@@ -29,7 +29,6 @@ module.exports = function() {
       done(err, user);
     });
   });
-
   
   //LOCAL SIGNUP
   passport.use('local-signup', new LocalStrategy({

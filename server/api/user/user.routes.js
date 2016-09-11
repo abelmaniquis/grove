@@ -88,14 +88,18 @@ module.exports =function(app){
 
 
 //FAILURE TO SIGN IN
-
   app.get('/failure',function(req,res){
     res.send("Incorrect Username or Password");
   });
   
-  app.delete('/delete_user',function(req,res){
+  app.get('/delete_user',function(req,res){
     res.send("This will delete a user");
-  })
+  });
+
+//Delete username:
+  app.delete('/', function (req, res) {
+  res.send('DELETE request to homepage');
+});
     
 };
 
