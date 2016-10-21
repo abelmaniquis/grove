@@ -11,13 +11,13 @@ var io = socket_io(server);
 exports.app = app;
 exports.server = server;
 
-var configDB = require('./config/database.js');
+var configDB = require('./server/config/database.js');
 
 mongoose.connect(configDB.url);
-require('./config/config.express')(app);
-require('./config/config.passport')();
-require('./api/user/user.routes.js')(app); 
-require('./config/config.chat.js')(io);
+require('./server/config/config.express')(app);
+require('./server/config/config.passport')();
+require('./server/api/user/user.routes.js')(app); 
+require('./server/config/config.chat.js')(io);
 
 //launch===========================================
 server.listen(port,function(){
