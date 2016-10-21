@@ -30,7 +30,6 @@ module.exports =function(app){
     failureRedirect : '/failure'
   }), function(req, res){
     req.status(200);
-   // console.log(req.body);
   });
   
   

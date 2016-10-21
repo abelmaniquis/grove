@@ -4,20 +4,7 @@ var passport = require('passport');
 
 var LocalStrategy = require('passport-local').Strategy;
 
-
 var User = require('../api/user/user.model.js');
-
-var Admin = new User();
-  Admin.local.username = "admin";
-  Admin.local.password = "12345";
-  Admin.local.name = "Admin";
-  Admin.save();
-  
-var TestUser = new User();
-  TestUser.local.username = "test";
-  TestUser.local.password = "12345";
-  TestUser.save();
-
 
 module.exports = function() {
   passport.serializeUser(function(user, done) {
@@ -47,7 +34,6 @@ module.exports = function() {
         else if(user){
           console.log('This username already exists');
         }else{
-          
           User.create({
             'local.username' : username,
             'local.password' : password,

@@ -14,13 +14,9 @@ exports.server = server;
 var configDB = require('./config/database.js');
 
 mongoose.connect(configDB.url);
-
 require('./config/config.express')(app);
-
 require('./config/config.passport')();
-
 require('./api/user/user.routes.js')(app); 
-
 require('./config/config.chat.js')(io);
 
 //launch===========================================

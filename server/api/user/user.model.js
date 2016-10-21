@@ -7,6 +7,9 @@ var userSchema = mongoose.Schema({
     username: String,
     password: String,
     name: String
+    //font color
+    //font size
+    
   }
 });
 
@@ -22,7 +25,6 @@ userSchema.methods.validPassword = function(password) {
   if (bcrypt.compareSync(this.local.password, hash)) {
     return true;
   };
-
 };
 
 
