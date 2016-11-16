@@ -5,13 +5,20 @@ var socket = io();
 var input = $(".inputMessage");
 var messages = $('.messages');
 var myUsername = "";
+var myStatus = "";
     
 $.getJSON("/profile/mine", function(data){
-
-    if (data.username.local.hasOwnProperty('name')) {
+    
+    myUsername = (data.username.local.username);
+    
+    /*if (data.username.local.hasOwnProperty('name')) {
         myUsername = (data.username.local.name);
     }else{
         myUsername = (data.username.local.username);
+    }*/
+    
+    if(data.username.local.hasOwnProperty('name')){
+        myStatus = (data.username.info.status);
     }
     
     socket.emit('added user',myUsername);

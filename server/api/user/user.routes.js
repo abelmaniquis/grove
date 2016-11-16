@@ -53,7 +53,7 @@ module.exports =function(app){
   
   app.put('/profile',isLoggedIn,function(req,res){
     User.findByIdAndUpdate(req.user._id,{
-      'local.name': req.body.name
+      'info.userStatus': req.body.name
     },function(error,user){
         if(error){
           console.log(error);

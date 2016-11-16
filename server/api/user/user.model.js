@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 
 var userSchema = mongoose.Schema({
@@ -10,7 +10,7 @@ var userSchema = mongoose.Schema({
   },
   info:{
     age: Number,
-    status: String,
+    userStatus: String,
     friends: Array
   }
 });
