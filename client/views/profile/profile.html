@@ -14,8 +14,8 @@
 
 <body>
 <div class="container">
-  <h3><span id="name"></span> Profile Page</h3>
   
+  <h3><span id="name"></span> Profile Page</h3>
   <div class="status-container">
     <form action="/profile" method="post" id="update">
       <div class="user-input">
@@ -24,11 +24,18 @@
         <input type="submit" name="submit">
       </div>
   </div>
-  
   <div>
-    userStatus: <p id="userStat"></p>
+    <p>How I'm feeling right now: <span id="userStat"></span></p>
   </div>
   
+  <div class="friends-list">
+    <h3>Here are my friends:</h3>
+    <ul>
+      <li>Friend 1</li>
+      <li>Friend 2</li>
+      <li>Friend 3</li>
+    </ul>
+  </div>
   <div class="rooms">
       <p><a href="/chat">Click to go to chat</a></p>
       <p><a href="/logout">Or Click to log out</a></p>

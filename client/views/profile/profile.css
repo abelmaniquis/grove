@@ -5,8 +5,12 @@ html{
 body{
 }
 
+li{
+  list-style-type:none;
+}
+
 .status-container{
-  text-align:right;
+  text-align:center;
 }
 
 .container{

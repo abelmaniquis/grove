@@ -17,7 +17,6 @@ $.getJSON("/profile/mine", function(data){
         myStatus = "";
     }
     
-    
     socket.emit('added user',myUsername);
 });
     
@@ -28,7 +27,7 @@ $.getJSON("/profile/mine", function(data){
         
         var message = myUsername + "(" + myStatus + ") " + ":     " + input.val();
         addMessage(message);
-            socket.emit('message',message);
+        socket.emit('message',message);
         input.val('');
     });
     socket.on('message',addMessage);
