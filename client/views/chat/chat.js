@@ -11,15 +11,12 @@ $.getJSON("/profile/mine", function(data){
     
     myUsername = (data.username.local.username);
     
-    /*if (data.username.local.hasOwnProperty('name')) {
-        myUsername = (data.username.local.name);
+    if(data.username.info.hasOwnProperty('userStatus')){
+        myStatus = (data.username.info.userStatus);
     }else{
-        myUsername = (data.username.local.username);
-    }*/
-    
-    if(data.username.local.hasOwnProperty('name')){
-        myStatus = (data.username.info.status);
+        myStatus = "";
     }
+    
     
     socket.emit('added user',myUsername);
 });
@@ -29,7 +26,7 @@ $.getJSON("/profile/mine", function(data){
             return;
         }
         
-        var message = myUsername + ":     " + input.val();
+        var message = myUsername + "(" + myStatus + ") " + ":     " + input.val();
         addMessage(message);
             socket.emit('message',message);
         input.val('');

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $.getJSON("profile/mine", function(data) {
         console.log(data);
         if (data.username.local.hasOwnProperty('name')) {
@@ -17,7 +16,7 @@ $(document).ready(function() {
                 name: field
             }
         }).done(function(user) {
-            console.log(user);
+            console.log(user.info.userStatus);
         }).fail(function(error) {
             console.log(error);
             $.ajax({
