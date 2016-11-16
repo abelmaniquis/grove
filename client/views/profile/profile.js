@@ -17,7 +17,6 @@ $(document).ready(function() {
                 name: field
             }
         }).done(function(user) {
-            console.log(user.info.userStatus);
             var displayStatus = user.info.userStatus;
             $('#userStat').text(displayStatus);
             $('#userUpdateField').val("");
