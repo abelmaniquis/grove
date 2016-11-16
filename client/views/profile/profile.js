@@ -1,11 +1,12 @@
 $(document).ready(function() {
-    $.getJSON("profile/mine", function(data) {
-        console.log(data);
-        if (data.username.local.hasOwnProperty('name')) {
-            $('#name').text(data.username.local.name);
-        }
+    $.getJSON("/profile/mine", function(data) {
+    }).done(function(user){
+        console.log(user);
+        
+        var userName = user.username.local.username;
+        $('#name').text(userName + "'s");
     });
-
+    
     $('#update').submit(function(event) {
         event.preventDefault();
         var field = $('#userUpdatefield').val();
@@ -17,6 +18,14 @@ $(document).ready(function() {
             }
         }).done(function(user) {
             console.log(user.info.userStatus);
+            console.log(user.local.username);
+            
+            var displayName = user.local.username;
+            var displayStatus = user.info.userStatus;
+            
+            $('#name').text(displayName);
+            $('#userStat').text(displayStatus);
+            
         }).fail(function(error) {
             console.log(error);
             $.ajax({

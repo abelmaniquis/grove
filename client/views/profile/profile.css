@@ -1,13 +1,13 @@
 html{
+  background-color:white;
   font-family: Helvetica,Arial,sans-serif;
-  color:white;
 }
 body{
-  text-align:center;
-  background-image:url("../images/grove_pic_1.JPG");
+}
+
+.status-container{
+  text-align:right;
 }
 
 .container{
-  margin-top:20em;
-  text-align:center;
 }

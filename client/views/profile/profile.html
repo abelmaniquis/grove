@@ -8,28 +8,29 @@
    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
    <script src="profile.js"></script>
    
-  <title>Document</title>
+  <title>Profile Page</title>
 </head>
+
+
 <body>
 <div class="container">
-  <h1>Profile Page</h1>
+  <h3><span id="name"></span> Profile Page</h3>
   
-  <div class = "user-info">
-    <p> Welcome <span id="name"></span></p>
-    <p class="name"></p>
-  </div>
   
-  <div class="name-form">
+  <div class="status-container">
     <form action="/profile" method="post" id="update">
+
       <div class="user-input">
         <label>Set Status:</label>
         <input type="text" name="name" id="userUpdatefield">
         <input type="submit" name="submit">
       </div>
   </div>
+  
   <div>
     userStatus: <p id="userStat"></p>
   </div>
+  
   <div class="rooms">
       <p><a href="/chat">Click to go to chat</a></p>
       <p><a href="/logout">Or Click to log out</a></p>
@@ -42,14 +43,6 @@
     </form>
   </div>
   
-  <!--
-  <div class="delete">
-  <form action="/delete_user" method="/delete_user">
-        <p>Or would you like to delete your account?</p>
-        <input class="button-type" type="submit" value="delete">
-    </form>
-  </div>
--->
 </div>
 </body>
 </html>

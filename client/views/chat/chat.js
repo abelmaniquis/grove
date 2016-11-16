@@ -32,7 +32,6 @@ $.getJSON("/profile/mine", function(data){
         input.val('');
     });
     socket.on('message',addMessage);
-    
 
 function addMessage(message){
       messages.append('<ul>' + message + '</ul>'); 
