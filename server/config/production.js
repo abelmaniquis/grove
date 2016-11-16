@@ -1,3 +1,4 @@
 module.exports = {
-  logging:false
+  logging:false,
+  url: process.env.MONGOLAB_URI
 };

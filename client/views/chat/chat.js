@@ -6,15 +6,13 @@ var input = $(".inputMessage");
 var messages = $('.messages');
 var myUsername = "";
     
-$.getJSON("profile/mine", function(data){
-// Make sure the data contains the username as expected before using it
+$.getJSON("/profile/mine", function(data){
+
     if (data.username.local.hasOwnProperty('name')) {
         myUsername = (data.username.local.name);
     }else{
         myUsername = (data.username.local.username);
     }
-    
-    console.log(data.username.local.name);
     
     socket.emit('added user',myUsername);
 });
@@ -25,7 +23,6 @@ $.getJSON("profile/mine", function(data){
         }
         
         var message = myUsername + ":     " + input.val();
-        
         addMessage(message);
             socket.emit('message',message);
         input.val('');
@@ -39,7 +36,7 @@ function addMessage(message){
 };
     
 function playSound(){
-    var audio = new Audio('views/chat/sounds/arpeggio.mp3');
+    var audio = new Audio('sounds/arpeggio.mp3');
     audio.play();
 };
     

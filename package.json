@@ -4,7 +4,6 @@
   "description": "Project:",
   "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "author": "",
@@ -19,6 +18,7 @@
     "mocha": "^2.5.3",
     "mongoose": "^4.5.7",
     "morgan": "^1.7.0",
+    "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "socket.io": "^1.4.8"

@@ -7,21 +7,21 @@ var userSchema = mongoose.Schema({
     username: String,
     password: String,
     name: String
-    //font color
-    //font size
-    
+  },
+  info:{
+    age: Number,
+    status: String,
+    friends: Array
   }
 });
 
 
 require('./user.validation.js')(userSchema);
 
-//Generate a hash for the password
-
 userSchema.methods.validPassword = function(password) {
   var salt = bcrypt.genSaltSync(8);
-  var hash = bcrypt.hashSync(password, salt);
-
+  var hash = bcrypt.hashSync(password);
+  console.log(hash);
   if (bcrypt.compareSync(this.local.password, hash)) {
     return true;
   };

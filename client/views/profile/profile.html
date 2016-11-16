@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href = "views/profile/profile.css">
+  <link rel="stylesheet" href = "profile.css">
    
    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-   <script src="views/profile/profile.js"></script>
+   <script src="profile.js"></script>
    
   <title>Document</title>
 </head>
@@ -22,12 +22,14 @@
   <div class="name-form">
     <form action="/profile" method="post" id="update">
       <div class="user-input">
-        <label>Type in the name you want to use in Chat</label>
+        <label>Set Status:</label>
         <input type="text" name="name" id="userUpdatefield">
         <input type="submit" name="submit">
       </div>
   </div>
-  
+  <div>
+    userStatus:
+  </div>
   <div class="rooms">
       <p><a href="/chat">Click to go to chat</a></p>
       <p><a href="/logout">Or Click to log out</a></p>
@@ -40,19 +42,14 @@
     </form>
   </div>
   
-  <div class="test">
-    <form action="http://google.com">
-    <input type="submit" value="Go to Google" />
-    </form>
-  </div>
-  
+  <!--
   <div class="delete">
   <form action="/delete_user" method="/delete_user">
         <p>Or would you like to delete your account?</p>
         <input class="button-type" type="submit" value="delete">
     </form>
   </div>
-
+-->
 </div>
 </body>
 </html>

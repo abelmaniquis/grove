@@ -1,5 +1,4 @@
 module.exports = function(io){
-
     var numUsers = 0;
 
     io.on('connection', function(socket){

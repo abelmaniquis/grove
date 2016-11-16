@@ -12,8 +12,8 @@ module.exports =function(app){
   
   app.set('client', path.join(__dirname, '../../../client/views'));
   var clientPath = app.get('client');
-
-  //HOME PAGE
+  
+  //Signup Page
 
   app.get("/",function(req,res){
     res.status(200).sendFile(path.join(clientPath, 'index.html'));
@@ -68,6 +68,12 @@ module.exports =function(app){
       username:req.user
     });
   });
+  
+    app.put('/friends',isLoggedIn,function(req,res){
+    User.findByIdAndUpdate(req.user._id,{
+      'info.friends':req.body.friends
+    });
+  })
  
 
 //CHAT

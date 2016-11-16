@@ -10,7 +10,6 @@ $(document).ready(function() {
     $('#update').submit(function(event) {
         event.preventDefault();
         var field = $('#userUpdatefield').val();
-
         $.ajax({
             url: '/profile',
             method: 'PUT',
