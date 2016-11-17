@@ -1,7 +1,7 @@
 {
   "name": "grove",
   "version": "1.0.0",
-  "description": "Project:",
+  "description": "A social site written with jquery and nodejs",
   "main": "server/server.js",
   "scripts": {
     "start": "node server.js"
