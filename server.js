@@ -11,8 +11,7 @@ var io = socket_io(server);
 exports.app = app;
 exports.server = server;
 
-//var configDB = require('./server/config/database.js');
-var configDB = require('./server/config/production.js');
+var configDB = require('./server/config/database.js');
 
 mongoose.connect(configDB.url);
 require('./server/config/config.express')(app);
