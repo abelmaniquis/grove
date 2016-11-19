@@ -47,7 +47,7 @@ module.exports =function(app){
   });
   
 //PROFILE
-  app.get("/profile",isLoggedIn,function(req,res){
+  app.get("/profile/",isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath, '/profile/profile.html'));
   });
   
@@ -69,9 +69,18 @@ module.exports =function(app){
     });
   });
   
-    app.put('/friends',isLoggedIn,function(req,res){
+    app.put('/friends/:newFriend',isLoggedIn,function(req,res,next){
     User.findByIdAndUpdate(req.user._id,{
-      'info.friends':req.body.friends
+    },function(err,user){
+      if(err){
+        next(err);
+      }else{
+        
+       // user.info.friends.push(req.params.newFriend);
+        console.log(user.info.friends);
+        console.log("You just made friends with ", req.params.newFriend);
+        user.save();
+      }
     });
   })
  
@@ -82,7 +91,8 @@ module.exports =function(app){
   app.get('/chat',isLoggedIn,function(req,res){
     res.status(200).sendFile(path.join(clientPath,'/chat/chat.html'));
   });
-  
+
+
 
 //LOGOUT
 
