@@ -8,7 +8,7 @@ $(document).ready(function() {
         console.log(user.username.info);
         $('#userStat').text(displayStatus);
         $('#name').text(userName + "'s");
-        $('#friendsList').append("A friend");
+        $('#friendsList').append("<li>A friend</li>");
     });
 
     $('#update').submit(function(event) {

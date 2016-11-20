@@ -16,10 +16,14 @@ var configDB = require('./server/config/database.js');
 mongoose.connect(configDB.url);
 require('./server/config/config.express')(app);
 require('./server/config/config.passport')();
-require('./server/api/user/user.routes.js')(app); 
+require('./server/api/user/user.routes.js')(app);
+require('./server/config/config.multer.js')(app);
 require('./server/config/config.chat.js')(io);
 
 //launch===========================================
 server.listen(port,function(){
   console.log('Listening on port ' + port);
 });
+
+//https://github.com/expressjs/multer
+//https://codeforgeek.com/2014/11/file-uploads-using-node-js/
