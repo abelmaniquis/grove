@@ -74,7 +74,6 @@ module.exports = function(app) {
   });
 
   app.put('/profile', isLoggedIn, function(req, res) {
-    
     User.findByIdAndUpdate(req.user._id, {
       'info.userStatus': req.body.name
     }, function(error, user) {

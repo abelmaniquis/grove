@@ -19,7 +19,15 @@ var userSchema = mongoose.Schema({
 
 require('./user.validation.js')(userSchema);
 
-userSchema.methods.validPassword = function(password) {
+userSchema.methods.generateHash = function(password){
+  return bcrypt.hashSync(password,bcrypt.genSaltSync(8),null);
+}
+
+userSchema.methods.validPassword = function(password){
+  return bcrypt.compareSync(password,this.local.password);
+}
+
+/*userSchema.methods.validPassword = function(password) {
   var salt = bcrypt.genSaltSync(8);
   var hash = bcrypt.hashSync(password);
   console.log(hash);
@@ -27,6 +35,6 @@ userSchema.methods.validPassword = function(password) {
     return true;
   };
 };
-
+*/
 
 module.exports = mongoose.model('User', userSchema);

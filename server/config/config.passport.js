@@ -34,18 +34,21 @@ module.exports = function() {
         else if(user){
           console.log('This username already exists');
         }else{
-          User.create({
-            'local.username' : username,
-            'local.password' : password,
-          }, function(err,createdUser){
-            if(err){
-              done(err,null);
-            }else{
-              done(null, createdUser);
-            }
-          }
           
-          );
+          var newUser = new User();
+          
+          newUser.local.username = username;
+          newUser.local.password = newUser.generateHash(password);
+          
+          newUser.save(function(err){
+            if (err){
+              console.log(err);
+              throw err;
+            }
+            console.log(newUser.username);
+            console.log(newUser.password);
+            return done(null,newUser);
+          })
           
         }
       });
