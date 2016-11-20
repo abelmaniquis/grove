@@ -8,19 +8,23 @@ var User = require('./user.model.js');
 
 var multer = require('multer');
 
-var storage = multer.diskStorage({
-  destination: function(req, file, callback) {
-    callback(null, './uploads');
-  },
-  filename: function(req, file, callback) {
-    callback(null, file.fieldname + '-' + Date.now());
-  }
-});
-var upload = multer({
-  storage: storage
-}).single('userPhoto');
+
 
 module.exports = function(app) {
+
+  var storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+      callback(null, './uploads');
+    },
+    filename: function(req, file, callback) {
+      callback(null, file.fieldname + '-' + Date.now());
+    }
+  });
+
+  var upload = multer({
+    storage: storage
+  }).single('userPhoto');
+
 
   app.use(express.static('client/views'));
 
@@ -28,6 +32,10 @@ module.exports = function(app) {
   var clientPath = app.get('client');
 
   //Signup Page
+  
+  console.log(storage);
+  console.log(upload);
+  
 
   app.get("/", function(req, res) {
     res.status(200).sendFile(path.join(clientPath, 'index.html'));
@@ -66,6 +74,7 @@ module.exports = function(app) {
   });
 
   app.put('/profile', isLoggedIn, function(req, res) {
+    
     User.findByIdAndUpdate(req.user._id, {
       'info.userStatus': req.body.name
     }, function(error, user) {
@@ -85,31 +94,34 @@ module.exports = function(app) {
   });
 
   app.put('/friends/:newFriend', isLoggedIn, function(req, res, next) {
-    User.findByIdAndUpdate(req.user._id, {}, function(err, user) {
+    User.findByIdAndUpdate(req.user._id, {
+
+    }, function(err, user) {
       if (err) {
         next(err);
       }
       else {
-
         // user.info.friends.push(req.params.newFriend);
         console.log(user.info.friends);
+        user.info.friends.push(req.params.newFriend);
+        console.log(user.info);
         console.log("You just made friends with ", req.params.newFriend);
-        user.save();
+
       }
     });
   })
 
   //PHOTOS
-  
-  app.post('/api/photo',function(req,res){
-    upload(req,res,function(err){
-      if(err){
+
+  app.post('/api/photo', function(req, res) {
+    upload(req, res, function(err) {
+      if (err) {
         return res.end("error uploading file");
       }
       res.end('file is uploaded');
     })
   })
-  
+
   //CHAT
 
   require('../../config/config.chat.js');

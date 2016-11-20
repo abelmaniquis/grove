@@ -27,3 +27,4 @@ server.listen(port,function(){
 
 //https://github.com/expressjs/multer
 //https://codeforgeek.com/2014/11/file-uploads-using-node-js/
+//http://lollyrock.com/articles/express4-file-upload/

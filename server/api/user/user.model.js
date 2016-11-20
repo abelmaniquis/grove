@@ -11,7 +11,8 @@ var userSchema = mongoose.Schema({
   info:{
     age: Number,
     userStatus: String,
-    friends: Array
+    friends: Array,
+    images: Array
   }
 });
 

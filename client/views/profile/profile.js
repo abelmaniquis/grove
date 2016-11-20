@@ -1,5 +1,13 @@
 $(document).ready(function() {
-
+    
+    $('#uploadForm').submit(function(){
+        console.log("This will upload a file!");
+        $("#upload-status").empty().text("file is uploading...");
+        $(this).ajaxSubmit({
+             
+        });
+    });
+    
     $.getJSON("/profile/mine", function(data) {}).done(function(user) {
         console.log(user);
         var userName = user.username.local.username;
@@ -33,5 +41,8 @@ $(document).ready(function() {
             })
         });
     });
-
+    
 });
+
+
+//https://codeforgeek.com/2014/11/ajax-file-upload-node-js/
