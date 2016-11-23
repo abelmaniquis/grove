@@ -4,7 +4,11 @@ var passport = require('passport');
 
 var LocalStrategy = require('passport-local').Strategy;
 
+
+
 var User = require('../api/user/user.model.js');
+
+
 
 module.exports = function() {
   passport.serializeUser(function(user, done) {
@@ -45,8 +49,6 @@ module.exports = function() {
               console.log(err);
               throw err;
             }
-            console.log(newUser.username);
-            console.log(newUser.password);
             return done(null,newUser);
           })
           
@@ -78,8 +80,5 @@ module.exports = function() {
         }
       });
   }));
-    
-//DELETE USER
 
-  console.log("END OF PASSPORT FUNCTION");
 };

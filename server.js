@@ -8,6 +8,7 @@ var http = require('http');
 var path = require('path');
 var io = socket_io(server);
 
+
 exports.app = app;
 exports.server = server;
 
@@ -17,7 +18,6 @@ mongoose.connect(configDB.url);
 require('./server/config/config.express')(app);
 require('./server/config/config.passport')();
 require('./server/api/user/user.routes.js')(app);
-require('./server/config/config.multer.js')(app);
 require('./server/config/config.chat.js')(io);
 
 //launch===========================================

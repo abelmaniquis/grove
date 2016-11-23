@@ -6,25 +6,14 @@ var path = require('path');
 var express = require('express');
 var User = require('./user.model.js');
 
-var multer = require('multer');
-
-
+var crypto = require('crypto');
+var request = require('request');
 
 module.exports = function(app) {
-
-  var storage = multer.diskStorage({
-    destination: function(req, file, callback) {
-      callback(null, './uploads');
-    },
-    filename: function(req, file, callback) {
-      callback(null, file.fieldname + '-' + Date.now());
-    }
-  });
-
-  var upload = multer({
-    storage: storage
-  }).single('userPhoto');
-
+  
+  var testhash = crypto.createHash('md5').update("testingmd5").digest("hex");
+  
+  console.log(testhash);
 
   app.use(express.static('client/views'));
 
@@ -32,9 +21,6 @@ module.exports = function(app) {
   var clientPath = app.get('client');
 
   //Signup Page
-  
-  console.log(storage);
-  console.log(upload);
   
 
   app.get("/", function(req, res) {
@@ -65,36 +51,59 @@ module.exports = function(app) {
     successRedirect: '/profile',
     failureRedirect: '/failure'
   }), function(req, res) {
-    console.log(req.body);
+    req.status(200);
   });
 
   //PROFILE
-  app.get("/profile/", isLoggedIn, function(req, res) {
+  app.get("/profile", isLoggedIn, function(req, res) {
+    console.log(req);
     res.status(200).sendFile(path.join(clientPath, '/profile/profile.html'));
   });
 
-  app.put('/profile', isLoggedIn, function(req, res) {
+  app.put('/profile/:myStatus', isLoggedIn, function(req, res) {
     User.findByIdAndUpdate(req.user._id, {
-      'info.userStatus': req.body.name
+      'info.userStatus': req.params.myStatus
     }, function(error, user) {
       if (error) {
         console.log(error);
       }
       else {
-        res.status(201).json(user);
+        res.status(200);
       }
     });
-  })
+  });
+  
+  app.put('/profile/updateEmail/:myEmail',isLoggedIn,function(req,res){
+     var cryptEmail = crypto.createHash('md5').update(req.params.myEmail).digest("hex");
+    User.findByIdAndUpdate(req.user._id,{
+      'local.email': req.params.myEmail
+    },function(error,user){
+      if(error){
+        console.log(error);
+      }else{
+        console.log()
+        res.status(200);
+      }
+    })
+  });
+  
 
   app.get('/profile/mine', isLoggedIn, function(req, res) {
+    console.log(req.user)
     res.json({
       username: req.user
     });
   });
+  
+  app.get('/profile/mine/friends',isLoggedIn,function(req,res){
+    res.json({
+      username: req.user.info.friends
+    })
+  })
 
   app.put('/friends/:newFriend', isLoggedIn, function(req, res, next) {
+    console.log(req)
     User.findByIdAndUpdate(req.user._id, {
-
     }, function(err, user) {
       if (err) {
         next(err);
@@ -105,21 +114,11 @@ module.exports = function(app) {
         user.info.friends.push(req.params.newFriend);
         console.log(user.info);
         console.log("You just made friends with ", req.params.newFriend);
-
       }
     });
   })
 
   //PHOTOS
-
-  app.post('/api/photo', function(req, res) {
-    upload(req, res, function(err) {
-      if (err) {
-        return res.end("error uploading file");
-      }
-      res.end('file is uploaded');
-    })
-  })
 
   //CHAT
 
@@ -127,7 +126,10 @@ module.exports = function(app) {
   app.get('/chat', isLoggedIn, function(req, res) {
     res.status(200).sendFile(path.join(clientPath, '/chat/chat.html'));
   });
-
+  
+  app.put('/chat',isLoggedIn, function(req,res){
+    console.log(req);
+  })
 
   //LOGOUT
 
@@ -140,16 +142,6 @@ module.exports = function(app) {
   //FAILURE TO SIGN IN
   app.get('/failure', function(req, res) {
     res.send("Incorrect Username or Password");
-  });
-
-  app.get('/delete_user', function(req, res) {
-    res.send("This will delete a user");
-  });
-
-
-  //Delete username:
-  app.delete('/', function(req, res) {
-    res.send('DELETE request to homepage');
   });
 
 };

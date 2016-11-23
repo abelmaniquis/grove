@@ -7,6 +7,7 @@
    
    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+   
    <script src="profile.js"></script>
    
   <title>Profile Page</title>
@@ -17,6 +18,11 @@
 <div class="container">
   
   <h3><span id="name"></span> Profile Page</h3>
+  
+  <div class="image">
+    
+  </div>
+  
   <div class="status-container">
     <form action="/profile" method="post" id="update">
       <div class="user-input">
@@ -25,27 +31,28 @@
         <input type="submit" name="submit">
       </div>
   </div>
+  
+  <div class="status-container">
+    <form>
+      <label>email address:</label>
+      <input type="text" name="email" id="userUpdatefield">
+      <input type="submit" name="submit">
+    </form>
+  </div>
+  
+  
+  
   <div>
     <p>How I'm feeling right now: <span id="userStat"></span></p>
+  </div>
+  <div>
+    <p>My email address: <span id="userEmail"></span></p>
   </div>
   
   <div class="friends">
     <h3>Here are my friends:</h3>
       <ul id='#friendsList'>
       </ul>
-  </div>
-  
-  <div class="file-upload">
-    <h3>Upload photos:</h3>
-    <form id = "uploadForm"
-    enctype = "multipart/form-data"
-    action = "api/photo"
-    method = "post">
-      
-    <input type="file" name="userPhoto"/>
-    <input type="submit" value="Upload Image" name="submit">
-    <span id="upload-status"></span>
-    </form>
   </div>
   
   <div class="rooms">

@@ -7,7 +7,9 @@ $(document).ready(function() {
     var myStatus = "";
 
     $.getJSON("/profile/mine", function(data) {
-
+        
+        console.log(data);
+        
         myUsername = (data.username.local.username);
 
         if (data.username.info.hasOwnProperty('userStatus')) {

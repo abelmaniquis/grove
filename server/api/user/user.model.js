@@ -1,19 +1,24 @@
+//https://www.allions.net/blog/post/use-gravatar-in-your-nodejs-application
+
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
-
+var crypto = require('crypto');
+var request = require('request');
 
 var userSchema = mongoose.Schema({
   local: {
     username: String,
-    password: String,
-    name: String
+    email: String,
+    gravatarHash:String,
+    password: String
   },
   info:{
     age: Number,
     userStatus: String,
+    statusHistory: Array,
     friends: Array,
-    images: Array
-  }
+    chatLog: Array
+  },
 });
 
 
@@ -26,15 +31,5 @@ userSchema.methods.generateHash = function(password){
 userSchema.methods.validPassword = function(password){
   return bcrypt.compareSync(password,this.local.password);
 }
-
-/*userSchema.methods.validPassword = function(password) {
-  var salt = bcrypt.genSaltSync(8);
-  var hash = bcrypt.hashSync(password);
-  console.log(hash);
-  if (bcrypt.compareSync(this.local.password, hash)) {
-    return true;
-  };
-};
-*/
 
 module.exports = mongoose.model('User', userSchema);
