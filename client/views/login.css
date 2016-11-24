@@ -1,22 +1,48 @@
 html{
+  height:100%;
   font-family: Helvetica,Arial,sans-serif;
-  color:white;
 }
 
 body{
   padding-top:10em;
-  background-image:url('images/grove_pic_1.JPG');
+  background:linear-gradient(#87cefa,white);
   display:block;
 }
+
 .container{
   margin-top:10em;
   text-align:center;
+  position:relative;
 }
 
-.button-type{
+#signup-form{
+  width:400px;
+  margin:50px auto;
+  text-align:center;
+}
+
+#signup-form fieldset{
+  padding:15px;
+  background:white;
+  border:0 none;
+  border-radius: 4px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing:border-box;
+  width:80%;
+  margin: 0 10%;
+  position:relative;
+}
+
+#signup-form input, #signup-form textarea{
+  border: 1px solid #ccc;
+  
+}
+
+.action-button{
   color:white;
   font-size:16px;
-  border-style:solid;
+  border-style:none;
   border-radius:4px;
   background-color:#0080ff;
 }

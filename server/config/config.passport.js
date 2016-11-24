@@ -4,8 +4,6 @@ var passport = require('passport');
 
 var LocalStrategy = require('passport-local').Strategy;
 
-
-
 var User = require('../api/user/user.model.js');
 
 

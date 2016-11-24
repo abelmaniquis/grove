@@ -1,4 +1,9 @@
 //app/routes.js
+
+//http://nodeexamples.com/2013/09/04/creating-an-md5-hash-to-get-profile-images-from-gravatar/
+
+//Trying to implement gravatar api. Need MD5 function
+
 var passport = require('passport');
 var io = require('socket.io');
 var http = require('http');
@@ -10,10 +15,6 @@ var crypto = require('crypto');
 var request = require('request');
 
 module.exports = function(app) {
-  
-  var testhash = crypto.createHash('md5').update("testingmd5").digest("hex");
-  
-  console.log(testhash);
 
   app.use(express.static('client/views'));
 
@@ -76,18 +77,18 @@ module.exports = function(app) {
   app.put('/profile/updateEmail/:myEmail',isLoggedIn,function(req,res){
      var cryptEmail = crypto.createHash('md5').update(req.params.myEmail).digest("hex");
     User.findByIdAndUpdate(req.user._id,{
-      'local.email': req.params.myEmail
+      'local.email': req.params.myEmail,
+      'local.gravatarHash': cryptEmail
     },function(error,user){
       if(error){
         console.log(error);
       }else{
-        console.log()
+        console.log(cryptEmail)
         res.status(200);
       }
     })
   });
   
-
   app.get('/profile/mine', isLoggedIn, function(req, res) {
     console.log(req.user)
     res.json({
