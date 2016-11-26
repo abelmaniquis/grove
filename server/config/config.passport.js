@@ -1,11 +1,9 @@
 //config.passport.js
 
 var passport = require('passport');
-
 var LocalStrategy = require('passport-local').Strategy;
-
 var User = require('../api/user/user.model.js');
-
+var flash = require('connect-flash');
 
 
 module.exports = function() {
@@ -18,10 +16,10 @@ module.exports = function() {
       done(err, user);
     });
   });
-  
   //LOCAL SIGNUP
   passport.use('local-signup', new LocalStrategy({
       usernameField: 'username',
+      emailField: 'email',
       passwordField: 'password',
       passReqToCallback: true 
     },
@@ -35,8 +33,8 @@ module.exports = function() {
         }
         else if(user){
           console.log('This username already exists');
+          //return done(null,false,req.flash('signupMessage','That username already exists!'));
         }else{
-          
           var newUser = new User();
           
           newUser.local.username = username;

@@ -2,8 +2,6 @@ $(document).ready(function() {
     
     $.getJSON("/profile/mine", function(data) {}).done(function(user) {
         
-        var currentScreen,nextScreen, previousScreen
-        
         var userName = user.username.local.username;
         var displayStatus = user.username.info.userStatus;
         

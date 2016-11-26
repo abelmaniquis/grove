@@ -7,7 +7,7 @@ var socket_io = require('socket.io');
 var http = require('http');
 var path = require('path');
 var io = socket_io(server);
-
+var flash = require('connect-flash');
 
 exports.app = app;
 exports.server = server;
