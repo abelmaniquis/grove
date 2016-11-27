@@ -4,7 +4,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../api/user/user.model.js');
 var flash = require('connect-flash');
-
+var gravatar = require('gravatar');
 
 module.exports = function() {
   passport.serializeUser(function(user, done) {
@@ -19,11 +19,10 @@ module.exports = function() {
   //LOCAL SIGNUP
   passport.use('local-signup', new LocalStrategy({
       usernameField: 'username',
-      emailField: 'email',
       passwordField: 'password',
       passReqToCallback: true 
     },
-    function(req,username,password,done){
+    function(req,username,password,email,done){
       User.findOne({
         'local.username':username
       },
@@ -33,11 +32,13 @@ module.exports = function() {
         }
         else if(user){
           console.log('This username already exists');
-          //return done(null,false,req.flash('signupMessage','That username already exists!'));
+          return done(null,false,req.flash('signupMessage','That username already exists!'));
         }else{
           var newUser = new User();
           
           newUser.local.username = username;
+          newUser.local.email = email;
+          newUser.gravatarHash =  gravatar.url(email);
           newUser.local.password = newUser.generateHash(password);
           
           newUser.save(function(err){
