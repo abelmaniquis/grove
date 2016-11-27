@@ -14,11 +14,10 @@ exports.server = server;
 
 var configDB = require('./server/config/database.js');
 
-mongoose.connect(configDB);
+mongoose.connect(configDB.url);
 require('./server/config/config.express')(app);
 require('./server/config/config.passport')();
-//require('./server/middleware/middleware.gravatar.js')();
-require('./server/api/user/user.routes.js')(app);
+//require('./server/api/user/user.routes.js')(app);
 require('./server/config/config.chat.js')(io);
 
 
