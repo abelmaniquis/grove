@@ -38,7 +38,7 @@ module.exports = function() {
           
           newUser.local.username = username;
           newUser.local.email = email;
-          newUser.gravatarHash =  gravatar.url(email);
+          //newUser.gravatarHash =  gravatar.url(email);
           newUser.local.password = newUser.generateHash(password);
           
           newUser.save(function(err){
