@@ -13,6 +13,7 @@ exports.app = app;
 exports.server = server;
 
 var configDB = require('./server/config/database.js');
+mongoose.connect(configDB.db.url);
 
 mongoose.connection.once('open',function(){
   console.log("Connection established!");
@@ -21,12 +22,12 @@ mongoose.connection.on('error',function(err){
   console.error("THERE HAS BEEN AN ERROR: ", err);
 })
 
-mongoose.connect(configDB.db.url);
+//mongoose.connect(configDB.db.url);
+
 require('./server/config/config.express')(app);
-require('./server/config/config.passport')();
+require('./server/config/config.passport')(app);
 require('./server/api/user/user.routes.js')(app);
 require('./server/config/config.chat.js')(io);
-
 
 app.use(function(err, req, res, next) {
   if (err) {
@@ -38,7 +39,3 @@ app.use(function(err, req, res, next) {
 server.listen(port,function(){
   console.log('Listening on port ' + port);
 });
-
-//https://github.com/expressjs/multer
-//https://codeforgeek.com/2014/11/file-uploads-using-node-js/
-//http://lollyrock.com/articles/express4-file-upload/

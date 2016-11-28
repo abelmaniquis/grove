@@ -6,7 +6,7 @@ var User = require('../api/user/user.model.js');
 var flash = require('connect-flash');
 var gravatar = require('gravatar');
 
-module.exports = function() {
+module.exports = function(app) {
   passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
@@ -32,13 +32,13 @@ module.exports = function() {
         }
         else if(user){
           console.log('This username already exists');
-          return done(null,false,req.flash('signupMessage','That username already exists!'));
+          return done;
+          //return done(null,false,req.flash('signupMessage','That username already exists!'));
         }else{
           var newUser = new User();
           
           newUser.local.username = username;
           newUser.local.email = email;
-          //newUser.gravatarHash =  gravatar.url(email);
           newUser.local.password = newUser.generateHash(password);
           
           newUser.save(function(err){
