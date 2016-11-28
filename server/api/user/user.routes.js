@@ -90,7 +90,7 @@ module.exports = function(app) {
   });
   
   app.get('/profile/mine', isLoggedIn, function(req, res) {
-    console.log(req.user)
+    console.log('user.routes.js line 93');
     res.json({
       username: req.user
     });

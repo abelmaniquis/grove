@@ -22,8 +22,6 @@ mongoose.connection.on('error',function(err){
   console.error("THERE HAS BEEN AN ERROR: ", err);
 })
 
-//mongoose.connect(configDB.db.url);
-
 require('./server/config/config.express')(app);
 require('./server/config/config.passport')(app);
 require('./server/api/user/user.routes.js')(app);

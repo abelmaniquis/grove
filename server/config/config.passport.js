@@ -22,7 +22,7 @@ module.exports = function(app) {
       passwordField: 'password',
       passReqToCallback: true 
     },
-    function(req,username,password,email,done){
+    function(req,username,password,done){
       User.findOne({
         'local.username':username
       },
@@ -38,12 +38,10 @@ module.exports = function(app) {
           var newUser = new User();
           
           newUser.local.username = username;
-          newUser.local.email = email;
           newUser.local.password = newUser.generateHash(password);
           
           newUser.save(function(err){
             if (err){
-              console.log(err);
               throw err;
             }
             return done(null,newUser);
