@@ -1,6 +1,7 @@
 module.exports = {
-  //'url':'mongodb://localhost/groveUsers'
   db:{
-  url:process.env.MONGOLAB_URI
+  url:process.env.MONGODB_URI
   }
 };
+
+  //'url':'mongodb://localhost/groveUsers'
