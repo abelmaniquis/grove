@@ -2,17 +2,12 @@
 
 //http://nodeexamples.com/2013/09/04/creating-an-md5-hash-to-get-profile-images-from-gravatar/
 
-//Trying to implement gravatar api. Need MD5 function
-
 var passport = require('passport');
 var io = require('socket.io');
 var http = require('http');
 var path = require('path');
 var express = require('express');
 var User = require('./user.model.js');
-
-var crypto = require('crypto');
-var request = require('request');
 
 module.exports = function(app) {
 
@@ -23,7 +18,6 @@ module.exports = function(app) {
 
   //Signup Page
   
-
   app.get("/", function(req, res) {
     res.status(200).sendFile(path.join(clientPath, 'index.html'));
   });
@@ -38,6 +32,7 @@ module.exports = function(app) {
     successRedirect: '/profile',
     failureRedirect: '/failure'
   }), function(req, res) {
+    
     req.status(200);
   });
 
@@ -62,35 +57,26 @@ module.exports = function(app) {
   });
 
   app.put('/profile/:myStatus', isLoggedIn, function(req, res) {
-    User.findByIdAndUpdate(req.user._id, {
-      'info.userStatus': req.params.myStatus
+    User.findByIdAndUpdate(req.user._id,{
+      'info.userStatus': req.params.myStatus,
     }, function(error, user) {
       if (error) {
         console.log(error);
       }
       else {
+        var date = new Date();
+        var stringdate = date.toString();
+        user.info.statusDates.push(stringdate);
+        user.info.statusHistory.push(req.params.myStatus)
+        user.save();
         res.status(200);
       }
     });
   });
   
-  app.put('/profile/updateEmail/:myEmail',isLoggedIn,function(req,res){
-     var cryptEmail = crypto.createHash('md5').update(req.params.myEmail).digest("hex");
-    User.findByIdAndUpdate(req.user._id,{
-      'local.email': req.params.myEmail,
-      'local.gravatarHash': cryptEmail
-    },function(error,user){
-      if(error){
-        console.log(error);
-      }else{
-        console.log(cryptEmail)
-        res.status(200);
-      }
-    })
-  });
+  app.put
   
   app.get('/profile/mine', isLoggedIn, function(req, res) {
-    console.log('user.routes.js line 93');
     res.json({
       username: req.user
     });
@@ -119,16 +105,12 @@ module.exports = function(app) {
     });
   })
 
-  //PHOTOS
-
-  //CHAT
-
   require('../../config/config.chat.js');
   app.get('/chat', isLoggedIn, function(req, res) {
     res.status(200).sendFile(path.join(clientPath, '/chat/chat.html'));
   });
   
-  app.put('/chat',isLoggedIn, function(req,res){
+  app.put('/chat/',isLoggedIn, function(req,res){
     console.log(req);
   })
 
@@ -155,4 +137,4 @@ function isLoggedIn(req, res, next) {
   }
 
 
-}
+};

@@ -5,6 +5,15 @@ $(document).ready(function() {
         var userName = user.username.local.username;
         var displayStatus = user.username.info.userStatus;
         
+        var statusHistory = user.username.info.statusHistory;
+        var statusDates = user.username.info.statusDates;
+        
+        console.log(statusDates,statusHistory);
+        
+        for(var i = statusHistory.length - 1;i >0; i-=1){
+            $("#wallposts").append("<li class='statusUpdate'>" + "<span class='date'>"+statusDates[i] + "</span>" + ": " + statusHistory[i] + "</li>")
+        }
+        
         $('#userStat').text(displayStatus);
         $('#name').text(userName + "'s");
     });
@@ -19,9 +28,8 @@ $(document).ready(function() {
                 myStatus: field
             }
         }).done(function(user) {
-            console.log(user.info.userStatus);
             var newStatus = user.info.userStatus;
-            console.log(newStatus);
+            $('#wallposts').append(newStatus);
             $('#userStat').text(newStatus);
             $('#userUpdatefield').val("");
 

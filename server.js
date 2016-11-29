@@ -24,7 +24,9 @@ mongoose.connection.on('error',function(err){
 
 require('./server/config/config.express')(app);
 require('./server/config/config.passport')(app);
+require('./server/config/config.chatLog')(app);
 require('./server/api/user/user.routes.js')(app);
+require('./server/api/chatLog/chatLog.routes.js')(app);
 require('./server/config/config.chat.js')(io);
 
 app.use(function(err, req, res, next) {

@@ -8,8 +8,6 @@ $(document).ready(function() {
 
     $.getJSON("/profile/mine", function(data) {
         
-        console.log(data);
-        
         myUsername = (data.username.local.username);
 
         if (data.username.info.hasOwnProperty('userStatus')) {
@@ -18,7 +16,6 @@ $(document).ready(function() {
         else {
             myStatus = "";
         }
-
         socket.emit('added user', myUsername);
     });
 
@@ -29,27 +26,24 @@ $(document).ready(function() {
 
         var message = '<span class="username">'  + myUsername + "</span>" + "(" + myStatus + ") " + ":     " + input.val();
         addMessage(message);
-        socket.emit('message', message);
+        logMessage(myUsername,input.val());
+        socket.emit('message', input.val());
         input.val('');
     });
     
     
     socket.on('message', addMessage);
 
-    function addFriend(friend) {
-        $.ajax({
-            url: '/friends/' + friend,
-            method: 'PUT',
-        }).done(function(user, friend) {
-            console.log("This is how you add a friend!");
-        });
-    };
-
 
     function addMessage(message) {
         messages.append('<ul>' + message + '</ul>');
         playSound();
     };
+    
+    function logMessage(name,input){
+        var thedate = new Date().toString().replace(/ /g, "_");
+        console.log(thedate,name + ": ",input);
+    }
 
     function playSound() {
         var audio = new Audio('sounds/arpeggio.mp3');

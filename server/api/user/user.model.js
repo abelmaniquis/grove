@@ -8,16 +8,16 @@ var request = require('request');
 var userSchema = mongoose.Schema({
   local: {
     username: String,
-    email: String,
-    gravatarHash:String,
     password: String
   },
   info:{
     age: Number,
+    relationship:Boolean,
     userStatus: String,
+    statusDates:Array,
     statusHistory: Array,
     friends: Array,
-    chatLog: Array
+    creditCard: String,
   },
 });
 
@@ -33,3 +33,6 @@ userSchema.methods.validPassword = function(password){
 }
 
 module.exports = mongoose.model('User', userSchema);
+
+
+
