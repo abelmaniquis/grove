@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var chatLogSchema = mongoose.Schema({
-  dates:Array,
-  log:Array,
+  date:String,
+  time:Array,
   names:Array,
   comments:Array
 })

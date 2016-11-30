@@ -1,20 +1,19 @@
-On the onset, it seems that this is just a simple chatroom application, it appears to be that way,
-after all, I started writing this app with the intent of creating my own version of a social networking
-site. It was useful for learning Node.js, and MongoDB.
+I am interested in the role that Big Data plays in our everyday life, especially
+when it comes to our privacy. This ongoing project is my way of learning about this issue
+from a first hand perspective. What started as a simple chatroom application became
+a much larger idea as I asked myself the question, 
 
-The user object 
+"If I were an evil corporation that wanted to gather people's data, how would I go about
+doing it?"
 
-Initially, I wasn't too happy with the project, after all the goal was to build an app that does something interesting.
+So I set about building a social networking site(or at least a demo of a social networking site) 
+that does exactly that,
 
-I tested the chatroom with a friend, and when checking the database on MongoDB, discovered that I had not
-been hashing passwords correctly. I then proceeded to fix my Bcrypt functions in my user object and continued building the app.
+Features:
 
-However, this moment planted a sort of seed inside of my mind, and that's when the app started to become a little more
-... insidious, and perhaps kind of creepy.
 
-This is my personal experiment on how an app can harvest user data, and my own attempt to further understand
-a relevant issue in today's society.
+Known Bugs:
+When I switched from 
 
-I created a social networking site that demonstrates this ability.
-
-So yes, you can say that this app is useful.
+Features to add:
+I would like to build a version of this project that runs off of an SQL database.

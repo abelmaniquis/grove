@@ -3,9 +3,6 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../api/user/user.model.js');
-var flash = require('connect-flash');
-var gravatar = require('gravatar');
-
 module.exports = function(app) {
   passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -20,9 +17,12 @@ module.exports = function(app) {
   passport.use('local-signup', new LocalStrategy({
       usernameField: 'username',
       passwordField: 'password',
+      genderField: 'gender',
       passReqToCallback: true 
     },
     function(req,username,password,done){
+      console.log(username);
+      console.log(password);
       User.findOne({
         'local.username':username
       },
@@ -31,9 +31,7 @@ module.exports = function(app) {
           return done(err);
         }
         else if(user){
-          console.log('This username already exists');
-          return done;
-          //return done(null,false,req.flash('signupMessage','That username already exists!'));
+          return done(null,false);
         }else{
           var newUser = new User();
           

@@ -62,6 +62,7 @@ module.exports = function(app) {
     }, function(error, user) {
       if (error) {
         console.log(error);
+        res.end();
       }
       else {
         var date = new Date();
@@ -74,7 +75,10 @@ module.exports = function(app) {
     });
   });
   
-  app.put
+  app.put('/profile/gender',function(req,res){
+    console.log("from put profile/gender");
+    console.log(req.user);
+  })
   
   app.get('/profile/mine', isLoggedIn, function(req, res) {
     res.json({

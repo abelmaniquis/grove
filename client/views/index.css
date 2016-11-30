@@ -7,38 +7,43 @@ body{
   padding:0;
   perspective: 1px;
   transform-style: preserve-3d;
-  text-align: center;
-  background: linear-gradient(#87cefa, white);
+  background: linear-gradient(#0080ff, white);
   font-family: Helvetica, Arial, sans-serif;
 }
 
+
 #logo {
+  text-align: center;
   padding-top:1.5em;
   color: yellow;
   font-size: 10em;
 }
 
 #welcome{
-  color:#87cefa;
+  text-align: center;
+  color:#0080ff;
 }
 
-.description{
-  background-image:url('http://lolspots.com/img/content/laughingfriends.jpg');
+
+
+.front-logo{
+  background-image:url('http://wallpapercave.com/wp/DPQD6VG.jpg');
   height:100%;
   background-attachment:fixed;
   background-position:center;
   background-size:cover;
 }
 
-.marketing h3{
-  
+.front-logo h3{
+  padding-top:50%;
 }
 
-.actual-description {
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  color: white;
+.front-logo form{
+  text-align:center;
+}
+
+.marketing h2{
+  height:3em;
 }
 
 .actual-description p {
@@ -49,10 +54,21 @@ body{
   height:36em;
 }
 
-xmp{
-  text-align:left;
+.action-button{
+  color:white;
+  font-size:16px;
+  border-style:none;
+  border-radius:4px;
+  background-color:#0080ff;
+  padding:5px 10px;
 }
 
-.actual-description ul{
-  list-style-type:none;
+.marketing{
+  text-align:center;
+  margin-top:15em;
+}
+
+#slogan{
+  text-align:center;
+  
 }

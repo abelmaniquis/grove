@@ -4,8 +4,8 @@ html{
 }
 
 body{
-  padding-top:10em;
-  background:linear-gradient(#87cefa,white);
+  padding-top:3.5em;
+  background:linear-gradient(#0080ff,white);
   display:block;
 }
 
@@ -21,6 +21,11 @@ body{
   text-align:center;
 }
 
+
+#logo{
+  color:#0080ff;
+}
+
 #signup-form fieldset{
   background:white;
   border:0 none;
@@ -34,7 +39,11 @@ body{
 }
 
 #signup-form input, #signup-form textarea{
+  margin:5px;
   border: 1px solid #ccc;
+}
+
+#gender-select{
 }
 
 .action-button{

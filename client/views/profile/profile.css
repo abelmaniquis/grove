@@ -10,6 +10,15 @@ body{
   height:80px;
 }
 
+#image-container{
+  height:140px;
+  width:140px;
+}
+
+#profile-image{
+  height:10em;
+}
+
 #rooms{
   text-align:right;
   display:inline-block;
