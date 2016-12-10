@@ -13,22 +13,24 @@
 
 <body>
   
-  <p><a href="/">Log Out</a></p>
-  <p><a href="/profile">Back to my profile</a></a></p>
-  
-  <div class="chat-container">
-  <ul class="chat">
-    <li class="chatPage">
-      <div class="chatArea">
-        <ul class="messages"></ul>
-      </div>
-      
-      <p class = "notifications"></p>
+ <div id="sidebar">
+    <div id="image-container">
+      <img id="profile-image" src="../images/default-guy.png" />
+    </div>
+    
+    <h3><span id="name"></span> Chat</h3>
+    <ul id="rooms">
+      <li class="link"><a href="/profile">Profile</a></li>
+      <li class="link"><a href="/logout">Log out</a></li>
+    </ul>
+</div>
+
+<div class="chat-container">
+      <ul class="messages"></ul>
       
       <input class="inputMessage" placeholder="Type here..." />
-    </li>
-  </ul>
-  </div>
+</div>
+
 </body>
 
 </html>

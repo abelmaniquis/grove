@@ -8,6 +8,7 @@ html{
 }
 
 html,body{
+  display:inline-block;
   height:100%;
   margin: 0;
   padding: 0;
@@ -17,18 +18,57 @@ ul{
   list-style-type:none;
 }
 
+
+
+h3{
+  text-align:center;
+}
+
 .username{
   font-weight:bold;
+  color:blue;
 }
 
 .inputMessage{
   border:10px solid #000;
   bottom:0;
-  height: 70px;
-  left:0;
+  height: 16%;
   outline:none;
-  padding-left:10px;
   position:absolute;
   right:0;
   width:100%;
 }
+
+.chat-container{
+}
+
+.messages{
+  margin-left:16.5em;
+  max-width:100%;
+}
+
+#sidebar{
+  text-align:center;
+  position:absolute;
+  width:20%;
+  height:100%;
+  border-right:solid black;
+}
+
+#image-container{
+  height:140px;
+}
+
+#profile-image{
+  height:10em;
+}
+
+.link{
+  text-align:center;
+}
+
+
+li{
+  list-style-type:none;
+}
+

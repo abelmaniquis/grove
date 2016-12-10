@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     var socket = io();
     var input = $(".inputMessage");
     var messages = $('.messages');
@@ -16,29 +15,35 @@ $(document).ready(function() {
         else {
             myStatus = "";
         }
-        socket.emit('added user', myUsername);
+        socket.emit('added user: ', myUsername);
     });
-
+    
     input.on('keydown', function(event) {
         if (event.keyCode != 13) {
             return;
         }
 
         var message = '<span class="username">'  + myUsername + "</span>" + "(" + myStatus + ") " + ":     " + input.val();
+    
         addMessage(message);
-        logMessage(myUsername,input.val());
-        socket.emit('message', input.val());
+        
+        socket.emit('message', message);
         input.val('');
     });
     
-    
     socket.on('message', addMessage);
-
-
+    socket.on("login", notifyLogin());
+    
+    
     function addMessage(message) {
-        messages.append('<ul>' + message + '</ul>');
+        $(".messages").append('<li>' + message + '</li>');
+        console.log(message)
         playSound();
     };
+    
+    function notifyLogin(){
+        $(".messages").append("<li> A user has logged in</li>");
+    }
     
     function logMessage(name,input){
         var thedate = new Date().toString().replace(/ /g, "_");

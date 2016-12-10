@@ -15,21 +15,18 @@
 </head>
 
 <body>
-
-
-
-  <div class="container">
+  <div id="sidebar">
     <div id="image-container">
       <img id="profile-image" src="../images/default-guy.png" />
     </div>
-    <div id="header">
+    
+    <h3><span id="name"></span> Profile Page</h3>
+    
+    <ul id="rooms">
+      <li><a href="/chat">Click to go to chat</a></li>
+      <li><a href="/logout">Or Click to log out</a></li>
+    </ul>
 
-      <h3><span id="name"></span> Profile Page</h3>
-      <ul id="rooms">
-        <li><a href="/chat">Click to go to chat</a></li>
-        <li><a href="/logout">Or Click to log out</a></li>
-      </ul>
-    </div>
     <div class="status-container">
       <form method="put" id="update">
         <div class="user-input">
@@ -42,14 +39,16 @@
       <p>How I'm feeling right now:<span id="userStat"></span></p>
     </div>
 
+  </div>
+
+  <div id="wall-container">
     <div id="wall">
       <h2>My Wall</h2>
       <ul id="wallposts">
-
       </ul>
     </div>
-
   </div>
+
 </body>
 
 </html>

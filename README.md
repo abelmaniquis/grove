@@ -1,19 +1,34 @@
-I am interested in the role that Big Data plays in our everyday life, especially
-when it comes to our privacy. This ongoing project is my way of learning about this issue
-from a first hand perspective. What started as a simple chatroom application became
-a much larger idea as I asked myself the question, 
+Concept
+===========
+When I was a young teenager, I had an aol instant messenger account that I
+used to chat with friends, when I was a little older, I got a Myspace account,
+and then in my twenties, like most of my peers, I found myself on Facebook.
 
-"If I were an evil corporation that wanted to gather people's data, how would I go about
-doing it?"
+Now, Social Media has become a driving force in our culture, it has affected
+how we keep in touch, get our news, and more recently, how we vote in elections.
+It has also raised concerns about Big Data and our privacy.
 
-So I set about building a social networking site(or at least a demo of a social networking site) 
-that does exactly that,
+I have observed that the profitability of social web apps comes first and foremost from the data that
+they collect from users. This is what advertisers use to target their ads, and what companies
+use to track trends.
 
-Features:
+This is a demo of a social networking site, that allows users to post updates on a wall, 
+tracks when those updates are made, and allows for chat functionality. Everything that
+the user does will be stored in mongoDB objects.
+
+*A note on humor
+I have a very dry sense of humor, and have an interest in conspiracy theories. Although
+I don't particularly believe in most conspiracy theories, I find them to be fascinating,
+in particular the idea that the Illuminati/Bilderberg/Skull and Bones Society/Trilateral Commission/
+Shadow Government would leave clues of its diabolical schemes all over the world. I decided that,
+going with the theme of privacy and data concerns, to go leave Bohemian Grove/Illuminati themes
+scattered throughout the app, because I have a dry sense of humor and it seemed appropriate.
+
+This is an ongoing project, and there are many features that I hope to implement.
 
 
-Known Bugs:
-When I switched from 
 
-Features to add:
-I would like to build a version of this project that runs off of an SQL database.
+
+
+
+

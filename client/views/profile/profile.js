@@ -1,14 +1,15 @@
-$(document).ready(function() {
-    
+$(document).ready(function(){
+    updateCurrentStatus();
+    loadPastStatuses();
+});
+
+
+var loadPastStatuses = function(){
     $.getJSON("/profile/mine", function(data) {}).done(function(user) {
-        
         var userName = user.username.local.username;
         var displayStatus = user.username.info.userStatus;
-        
         var statusHistory = user.username.info.statusHistory;
         var statusDates = user.username.info.statusDates;
-        
-        console.log(statusDates,statusHistory);
         
         for(var i = statusHistory.length - 1;i >0; i-=1){
             $("#wallposts").append("<li class='statusUpdate'>" + "<span class='date'>"+statusDates[i] + "</span>" + ": " + statusHistory[i] + "</li>")
@@ -17,10 +18,13 @@ $(document).ready(function() {
         $('#userStat').text(displayStatus);
         $('#name').text(userName + "'s");
     });
+}
 
-    $('#update').submit(function(event) {
+var updateCurrentStatus = function(){
+        $('#update').submit(function(event) {
         event.preventDefault();
-        var field = $('#userUpdatefield').val();
+        
+        var field = $('#userUpdatefield').val();1
         $.ajax({
             url: '/profile/' + field,
             method: 'PUT',
@@ -28,10 +32,12 @@ $(document).ready(function() {
                 myStatus: field
             }
         }).done(function(user) {
-            var newStatus = user.info.userStatus;
+            console.log(user);
+            /*var newStatus = user.info.userStatus;
+            console.log(newStatus);
             $('#wallposts').append(newStatus);
             $('#userStat').text(newStatus);
-            $('#userUpdatefield').val("");
+            $('#userUpdatefield').val("");*/
 
         }).fail(function(error) {
             console.log(error);
@@ -41,12 +47,4 @@ $(document).ready(function() {
             })
         });
     });
-    
-    $('#email-form').submit(function(event){
-        event.preventDefault();
-    })
-    
-});
-
-
-//https://codeforgeek.com/2014/11/ajax-file-upload-node-js/
+}
