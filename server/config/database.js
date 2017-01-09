@@ -1,6 +1,6 @@
 module.exports = {
   db:{
-  url:process.env.MOGODB_URI
+  url:process.env.MONGODB_URI
   }
 };
 
