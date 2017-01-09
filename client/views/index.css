@@ -7,7 +7,7 @@ body{
   padding:0;
   perspective: 1px;
   transform-style: preserve-3d;
-  background: linear-gradient(#0080ff, white);
+  background: #0080ff;
   font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -40,16 +40,12 @@ body{
   text-align:center;
 }
 
-.marketing h2{
-  height:3em;
-}
-
 .actual-description p {
   text-align:left;
 }
 
 .marketing{
-  height:36em;
+  height:5em;
 }
 
 .action-button{
@@ -64,6 +60,10 @@ body{
 .marketing{
   text-align:center;
   margin-top:15em;
+}
+
+#brandDescription{
+  
 }
 
 #slogan{
