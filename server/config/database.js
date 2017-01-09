@@ -1,6 +1,6 @@
 module.exports = {
   db:{
-  url:'mongodb://localhost/groveUsers'
+  url:process.env.MONGODB_URI
   }
 };
 

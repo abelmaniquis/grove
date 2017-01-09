@@ -75,6 +75,10 @@ module.exports = function(app) {
     });
   });
   
+  app.put('/profile/removeStatus',function(req,res){
+    console.log("Will remove status");
+  })
+  
   app.put('/profile/gender',function(req,res){
     console.log("from put profile/gender");
     console.log(req.user);
